@@ -12,7 +12,9 @@ const Header = () => {
 
       <div className="block-right">
         <FontAwesomeIcon icon="user" className="user-icon" />
-        <FontAwesomeIcon icon="cart-arrow-down" className="cart-icon" />
+        <Link to="/cart">
+          <FontAwesomeIcon icon="cart-arrow-down" className="cart-icon" />
+        </Link>
       </div>
     </div>
   );

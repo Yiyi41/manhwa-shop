@@ -7,6 +7,9 @@ import Footer from "./components/Footer";
 //import pages
 import Home from "./pages/Home";
 import ManhwaDetail from "./pages/ManhwaDetail";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Cart from "./pages/Cart";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -25,6 +28,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<ManhwaDetail />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </div>

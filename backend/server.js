@@ -7,7 +7,7 @@ app.use(cors());
 
 const mysql = require("promise-mysql");
 const manhwaRoutes = require("./routes/manhwaRoutes");
-// const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 // parse application/x-www-form-urlencoded
 
@@ -24,7 +24,7 @@ const connectionOptions = {
 
 mysql.createConnection(connectionOptions).then(async (db) => {
   manhwaRoutes(app, db);
-  // userRoutes(app, db);
+  userRoutes(app, db);
 });
 
 app.listen(4000, () => {
