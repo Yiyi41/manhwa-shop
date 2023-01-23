@@ -3,6 +3,7 @@
 
 body {
   /* font-size: 62.5%; */
+  /* overflow: hidden; */
 }
 * {
   box-sizing: border-box;
@@ -145,14 +146,38 @@ body {
 .manhwaDetails img {
   border-radius: 15px 5px;
 }
-.footer {
+summary:hover {
+  cursor: pointer;
+}
+.signup {
+  margin-bottom: 35%;
   text-align: center;
-  margin: 20px 0;
+}
+.signup input {
+  width: 70%;
+  height: 40px;
+  border-radius: 5px 3px;
+  margin: 15px 5%;
+  background-color: #f3f3f3;
+}
+.signup button {
+  border-radius: 5px 3px;
+}
+.signupInput {
+  margin-bottom: 20px;
+}
+
+.footer {
+  color: #bdbbbb;
+  text-align: center;
+  margin-top: 90px;
+  position: static;
+  bottom: 0;
 }
 .socialNetworks {
   display: flex;
   justify-content: space-evenly;
-  margin: 0 15%;
+  margin: 0 20%;
 }
 .footer img {
   width: 25px;
