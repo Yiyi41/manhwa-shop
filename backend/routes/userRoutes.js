@@ -48,7 +48,7 @@ const userRoutes = (app, db) => {
         // console.log(userToFind[0].salt);
         if (newHash === userToFind[0].password) {
           const token = jwt.sign(
-            { id: userToFind.id },
+            { id: userToFind[0].id },
             process.env.jwtokenKey,
             {
               expiresIn: "2h",
