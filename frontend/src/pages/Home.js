@@ -2,11 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
+import { CartContext } from "../context/cartContext";
 
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [cart, setCart] = useState([]);
+  const { cart, setCart } = useState(CartContext);
 
   useEffect(() => {
     const fetchManhwaList = async () => {
@@ -21,6 +22,17 @@ const Home = () => {
     };
     fetchManhwaList();
   }, []);
+
+  const handleAddToCart = (manhwaId) => {
+    const newCart = [...cart];
+    const manhwaToCheck = newCart.find();
+
+    let manhwaToAdd = {
+      name: manhwa.name,
+      price: manhwa.price,
+      quantity: 1,
+    };
+  };
 
   return isLoading ? (
     <span>En cours de chargement...</span>

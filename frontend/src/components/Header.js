@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/logo-v1-manhwa.png";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/cartContext";
 
 const Header = () => {
+  const [cart, setCart] = useState(CartContext);
   return (
     <div className="header-container">
       <FontAwesomeIcon icon="bars" className="bars-icon" />
