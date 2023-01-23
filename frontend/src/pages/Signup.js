@@ -9,7 +9,7 @@ const Signup = () => {
           <input type="email" placeholder="email" required />
           <input type="password" placeholder="mot de passe" required />
         </div>
-        <button>Créer un compte</button>
+        <button type="submit">Créer un compte</button>
       </form>
     </div>
   );

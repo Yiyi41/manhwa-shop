@@ -120,7 +120,7 @@ body {
   height: 35px;
 }
 
-.text-input,
+/* .text-input,
 .validation-input {
   background-color: #f0efef;
   width: 80%;
@@ -130,7 +130,7 @@ body {
   padding: 10px;
   font-size: 1.1rem;
   color: #bdbbbb;
-}
+} */
 
 .validation-input {
   width: 35%;
@@ -153,15 +153,18 @@ summary:hover {
   margin-bottom: 35%;
   text-align: center;
 }
-.signup input {
+.signup input,
+.form input {
   width: 70%;
   height: 40px;
   border-radius: 5px 3px;
   margin: 15px 5%;
   background-color: #f3f3f3;
 }
-.signup button {
+.signup button,
+.form button {
   border-radius: 5px 3px;
+  background-color: #ee817e;
 }
 .signupInput {
   margin-bottom: 20px;
