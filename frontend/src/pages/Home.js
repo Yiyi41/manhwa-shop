@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar";
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchManhwaList = async () => {
@@ -29,15 +30,42 @@ const Home = () => {
       <div className="manhwaList-container">
         {manhwaList.map((manhwa) => {
           return (
-            <div key={manhwa.Id} className="manhwa-card">
-              <Link to={`/detail/${manhwa.Id}`}>
+            <div key={manhwa.id} className="manhwa-card">
+              <Link to={`/detail/${manhwa.id}`}>
                 <img src={manhwa.img} alt="manhwa" />
               </Link>
 
-              <p>{manhwa.Name}</p>
-              <p>{manhwa.Author}</p>
-              <p>{manhwa.Artist}</p>
-              <p>{manhwa.Price} €</p>
+              <p>{manhwa.name}</p>
+              <p>{manhwa.author}</p>
+              <p>{manhwa.artist}</p>
+              <p>{manhwa.price} €</p>
+              <button
+                onClick={() => {
+                  const newCart = [...cart];
+                  let manhwaToAdd = {
+                    name: manhwa.name,
+                    price: manhwa.price,
+                    quantity: 1,
+                  };
+
+                  //avant de push manhwa, je vérifie si ce manhwa est déjà dans mon tableau
+                  let isIn = false;
+                  for (let i = 0; i < newCart.length; i++) {
+                    if (newCart[i].name === manhwa.name) {
+                      newCart[i].quantity++;
+                      isIn = true;
+                      break;
+                    }
+                  }
+                  if (isIn === false) {
+                    newCart.push(manhwaToAdd);
+                  }
+
+                  setCart(newCart);
+                }}
+              >
+                Ajouter au panier
+              </button>
             </div>
           );
         })}

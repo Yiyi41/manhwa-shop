@@ -11,7 +11,7 @@ const ManhwaDetail = () => {
   useEffect(() => {
     const fetchManhwaDetail = async () => {
       try {
-        console.log(id);
+        // console.log(id);
         const response = await axios.get(`http://localhost:4000/manhwas/${id}`);
         // console.log(response.data.responseDB[0]);
         setManhwaDetail(response.data.responseDB[0]);
@@ -27,9 +27,10 @@ const ManhwaDetail = () => {
     <span>En cours de chargement...</span>
   ) : (
     <div>
-      <p>{manhwaDetail.Name}</p>
+      <p>{manhwaDetail.name}</p>
       <img src={manhwaDetail.img} alt="manhwa" />
-      <p>{manhwaDetail.Price} €</p>
+      <p>{manhwaDetail.price} €</p>
+      <button>Ajoutr au panier</button>
     </div>
   );
 };
