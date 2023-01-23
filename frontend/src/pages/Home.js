@@ -40,6 +40,7 @@ const Home = () => {
                 {/* <p>{manhwa.artist}</p> */}
                 <p>{manhwa.price} €</p>
                 <button
+                  className="ajoutPanier"
                   onClick={() => {
                     const newCart = [...cart];
                     let manhwaToAdd = {

@@ -1,5 +1,9 @@
 /* for reset some default css */
 /* @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css"); */
+
+body {
+  /* font-size: 62.5%; */
+}
 * {
   box-sizing: border-box;
 }
@@ -62,22 +66,29 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .manhwa-card {
   width: 95%;
-  border-radius: 10px 5px;
+  height: 205px;
+  border-radius: 15px 5px;
   display: flex;
-  justify-content: space-between;
-  border: 1px black solid;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 5px 5px 1px 1px rgba(218, 218, 226, 0.2);
+  /* border: 1px rgb(69, 64, 64) solid; */
 }
 
 .manhwa-card img {
+  padding-top: 5px;
   width: 125px;
   height: auto;
+  border-radius: 15px 5px;
 }
 .cardInfos {
   width: 50%;
+  padding-left: 10px;
 }
 
 /* login */
@@ -101,6 +112,12 @@
   border: 1px solid #f9f4f4;
   border-radius: 5px;
 }
+.ajoutPanier {
+  background-color: #ee817e;
+  border-radius: 5px 3px;
+  width: 145px;
+  height: 35px;
+}
 
 .text-input,
 .validation-input {
@@ -120,4 +137,23 @@
   height: 40px;
   background-color: #ff7a7a;
   color: black;
+}
+.manhwaDetails {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.manhwaDetails img {
+  border-radius: 15px 5px;
+}
+.footer {
+  text-align: center;
+  margin: 20px 0;
+}
+.socialNetworks {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 15%;
+}
+.footer img {
+  width: 25px;
 }
