@@ -27,16 +27,28 @@ const Home = () => {
     // cart=[{info:{tout l'obj manhwa 1}, quantity:1},{info:{tout l'obj manhwa 2}, quantity:1}]
     const newCart = [...cart];
     console.log(newCart);
-
-    for (let i = 0; i < newCart.length; i++) {
-      if (newCart[i].info.id) {
-        newCart[i].quantity++;
-      } else {
-        const manhwaToAdd = {
-          info: manhwa,
-          quantity: 1,
-        };
-        newCart.push(manhwaToAdd);
+    // let manhwaToAdd = {
+    //   info: manhwa,
+    //   quantity: 1,
+    // };
+    // si panier est vide, push directement le manhwa cliqué
+    if (newCart.length === 0) {
+      newCart.push({
+        info: manhwa,
+        quantity: 1,
+      });
+    } else {
+      for (let i = 0; i < newCart.length; i++) {
+        console.log(newCart[i].info.id);
+        if (newCart[i].info.id === manhwa.id) {
+          newCart[i].quantity++;
+          // break;
+        } else {
+          newCart.push({
+            info: manhwa,
+            quantity: 1,
+          });
+        }
       }
     }
 
@@ -56,7 +68,6 @@ const Home = () => {
     //     manhwaIsInCart.quantity++;
     //   }
     // }
-    setCart(newCart);
   };
 
   return isLoading ? (
