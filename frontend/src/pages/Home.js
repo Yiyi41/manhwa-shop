@@ -34,38 +34,39 @@ const Home = () => {
               <Link to={`/detail/${manhwa.id}`}>
                 <img src={manhwa.img} alt="manhwa" />
               </Link>
+              <div className="cardInfos">
+                <p>{manhwa.name}</p>
+                <p>{manhwa.author}</p>
+                {/* <p>{manhwa.artist}</p> */}
+                <p>{manhwa.price} €</p>
+                <button
+                  onClick={() => {
+                    const newCart = [...cart];
+                    let manhwaToAdd = {
+                      name: manhwa.name,
+                      price: manhwa.price,
+                      quantity: 1,
+                    };
 
-              <p>{manhwa.name}</p>
-              <p>{manhwa.author}</p>
-              <p>{manhwa.artist}</p>
-              <p>{manhwa.price} €</p>
-              <button
-                onClick={() => {
-                  const newCart = [...cart];
-                  let manhwaToAdd = {
-                    name: manhwa.name,
-                    price: manhwa.price,
-                    quantity: 1,
-                  };
-
-                  //avant de push manhwa, je vérifie si ce manhwa est déjà dans mon tableau
-                  let isIn = false;
-                  for (let i = 0; i < newCart.length; i++) {
-                    if (newCart[i].name === manhwa.name) {
-                      newCart[i].quantity++;
-                      isIn = true;
-                      break;
+                    //avant de push manhwa, je vérifie si ce manhwa est déjà dans mon tableau
+                    let isIn = false;
+                    for (let i = 0; i < newCart.length; i++) {
+                      if (newCart[i].name === manhwa.name) {
+                        newCart[i].quantity++;
+                        isIn = true;
+                        break;
+                      }
                     }
-                  }
-                  if (isIn === false) {
-                    newCart.push(manhwaToAdd);
-                  }
+                    if (isIn === false) {
+                      newCart.push(manhwaToAdd);
+                    }
 
-                  setCart(newCart);
-                }}
-              >
-                Ajouter au panier
-              </button>
+                    setCart(newCart);
+                  }}
+                >
+                  Ajouter au panier
+                </button>
+              </div>
             </div>
           );
         })}
