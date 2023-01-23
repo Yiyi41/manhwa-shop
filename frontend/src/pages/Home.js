@@ -33,11 +33,12 @@ const Home = () => {
               <Link to={`/detail/${manhwa.Id}`}>
                 <img src={manhwa.img} alt="manhwa" />
               </Link>
-
-              <p>{manhwa.Name}</p>
-              <p>{manhwa.Author}</p>
-              <p>{manhwa.Artist}</p>
-              <p>{manhwa.Price} €</p>
+              <div className="cardData">
+                <p>{manhwa.Name}</p>
+                <p>{manhwa.Author}</p>
+                {/* <p>{manhwa.Artist}</p> */}
+                <p>{manhwa.Price}€</p>
+              </div>
             </div>
           );
         })}

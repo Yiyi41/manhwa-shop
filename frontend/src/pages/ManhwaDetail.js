@@ -22,14 +22,17 @@ const ManhwaDetail = () => {
     };
     fetchManhwaDetail();
   }, [id]);
-
+  //console.log(manhwaDetail.Resume);
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <div>
       <p>{manhwaDetail.Name}</p>
       <img src={manhwaDetail.img} alt="manhwa" />
-      <p>{manhwaDetail.Price} €</p>
+      <details>
+        <summary>Show summary</summary> {manhwaDetail.Resume}{" "}
+      </details>
+      <p>{manhwaDetail.Price}€</p>
     </div>
   );
 };

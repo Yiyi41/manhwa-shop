@@ -28,5 +28,5 @@ mysql.createConnection(connectionOptions).then(async (db) => {
 });
 
 app.listen(4000, () => {
-  console.log("server stated 🚀");
+  console.log("server started 🚀");
 });
