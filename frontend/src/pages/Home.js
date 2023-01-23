@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { CartContext } from "../context/cartContext";
@@ -7,7 +7,7 @@ import { CartContext } from "../context/cartContext";
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const { cart, setCart } = useState(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchManhwaList = async () => {
@@ -23,15 +23,40 @@ const Home = () => {
     fetchManhwaList();
   }, []);
 
-  const handleAddToCart = (manhwaId) => {
+  const handleAddToCart = (manhwa) => {
+    // cart=[{info:{tout l'obj manhwa 1}, quantity:1},{info:{tout l'obj manhwa 2}, quantity:1}]
     const newCart = [...cart];
-    const manhwaToCheck = newCart.find();
+    console.log(newCart);
 
-    let manhwaToAdd = {
-      name: manhwa.name,
-      price: manhwa.price,
-      quantity: 1,
-    };
+    for (let i = 0; i < newCart.length; i++) {
+      if (newCart[i].info.id) {
+        newCart[i].quantity++;
+      } else {
+        const manhwaToAdd = {
+          info: manhwa,
+          quantity: 1,
+        };
+        newCart.push(manhwaToAdd);
+      }
+    }
+
+    setCart(newCart);
+
+    // if (newCart.length !== 0) {
+    //   let manhwaIsInCart = newCart.find((item) => item.name === manhwa.name);
+    //   console.log(manhwaIsInCart);
+    //   if ((manhwaIsInCart = undefined)) {
+    //     let manhwaToAdd = {
+    //       name: manhwa.name,
+    //       price: manhwa.price,
+    //       quantity: 1,
+    //     };
+    //     newCart.push(manhwaToAdd);
+    //   } else {
+    //     manhwaIsInCart.quantity++;
+    //   }
+    // }
+    setCart(newCart);
   };
 
   return isLoading ? (
@@ -54,27 +79,7 @@ const Home = () => {
                 <button
                   className="ajoutPanier"
                   onClick={() => {
-                    const newCart = [...cart];
-                    let manhwaToAdd = {
-                      name: manhwa.name,
-                      price: manhwa.price,
-                      quantity: 1,
-                    };
-
-                    //avant de push manhwa, je vérifie si ce manhwa est déjà dans mon tableau
-                    let isIn = false;
-                    for (let i = 0; i < newCart.length; i++) {
-                      if (newCart[i].name === manhwa.name) {
-                        newCart[i].quantity++;
-                        isIn = true;
-                        break;
-                      }
-                    }
-                    if (isIn === false) {
-                      newCart.push(manhwaToAdd);
-                    }
-
-                    setCart(newCart);
+                    handleAddToCart(manhwa);
                   }}
                 >
                   Ajouter au panier
