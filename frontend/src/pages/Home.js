@@ -45,7 +45,7 @@ const Home = () => {
           quantity: quantity,
         });
       }
-    });
+    };
 
     setCart(newCart);
   };
