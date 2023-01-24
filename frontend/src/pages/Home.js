@@ -6,16 +6,20 @@ import { CartContext } from "../context/cartContext";
 
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const { cart, setCart } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState(true); // pour ne rien afficher tant qu'on n'a pas la liste des Manhuas
+  // attention!!! il faut utiliser {} pour useContext, pas []
+  // Sinon on a l'erreur "not iterable"
+  const { cart, setCart } = useContext(CartContext); //le state cart est dans un useContext pour etre accessible de partout (dans le header, dans la page panier...)
 
+  // on recupere la liste des manhuas
+  // n'est executé qu'une fois car le useEffect a pour argument []
   useEffect(() => {
     const fetchManhwaList = async () => {
       try {
+        //on fait la requete au back et on attend
         const response = await axios.get("http://localhost:4000/manhwas");
-        // console.log(response.data.responseDB);
         setManhwaList(response.data.responseDB);
-        setIsLoading(false);
+        setIsLoading(false); // pour ne rien afficher tant qu'on n'a pas la liste
       } catch (error) {
         console.log(error.response);
       }
@@ -24,50 +28,30 @@ const Home = () => {
   }, []);
 
   const handleAddToCart = (manhwa) => {
-    // cart=[{info:{tout l'obj manhwa 1}, quantity:1},{info:{tout l'obj manhwa 2}, quantity:1}]
+    // on copie le tableau car on ne peut pas modifier un state directement il faudra utiliser setCart
     const newCart = [...cart];
-    console.log(newCart);
-    // let manhwaToAdd = {
-    //   info: manhwa,
-    //   quantity: 1,
-    // };
-    // si panier est vide, push directement le manhwa cliqué
-    if (newCart.length === 0) {
+
+    // on teste si il est déjà dans le panier
+    let isIn = false; //pour memoriser si on l'a trouvé
+    for (let i = 0; i < newCart.length; i++) {
+      // on boucle sur les element du panier
+      if (newCart[i].info.id === manhwa.id) {
+        // on l'a trouvé
+        isIn = true; //on le note pour eviter de l'ajouter dans le panier après
+        newCart[i].quantity++; // on ajoute 1 a la quantité de cet article
+        break; // on sort de la boucle du panier car on n'a pas besoin de tester les autres elements
+      }
+    }
+    //si il n'est pas encore dans le panier on l'ajoute
+    if (isIn === false) {
+      // ===false si on ne l'a pas trouvé dans la boucle au dessus
       newCart.push({
         info: manhwa,
         quantity: 1,
       });
-    } else {
-      for (let i = 0; i < newCart.length; i++) {
-        console.log(newCart[i].info.id);
-        if (newCart[i].info.id === manhwa.id) {
-          newCart[i].quantity++;
-          // break;
-        } else {
-          newCart.push({
-            info: manhwa,
-            quantity: 1,
-          });
-        }
-      }
     }
-
+    // maintenant que les modification sont faite on peux mettre à jour le state
     setCart(newCart);
-
-    // if (newCart.length !== 0) {
-    //   let manhwaIsInCart = newCart.find((item) => item.name === manhwa.name);
-    //   console.log(manhwaIsInCart);
-    //   if ((manhwaIsInCart = undefined)) {
-    //     let manhwaToAdd = {
-    //       name: manhwa.name,
-    //       price: manhwa.price,
-    //       quantity: 1,
-    //     };
-    //     newCart.push(manhwaToAdd);
-    //   } else {
-    //     manhwaIsInCart.quantity++;
-    //   }
-    // }
   };
 
   return isLoading ? (
