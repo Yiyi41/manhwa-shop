@@ -25,6 +25,28 @@ const ManhwaDetail = () => {
     fetchManhwaDetail();
   }, [id]);
   //console.log(manhwaDetail.Resume);
+
+  const handleAddToCart = (manhwa) => {
+    const newCart = [...cart];
+    let isIn = false;
+    for (let i = 0; i < newCart.length; i++) {
+      if (newCart[i].info.id === manhwa.id) {
+        isIn = true;
+        newCart[i].quantity++;
+        break;
+      }
+    }
+
+    if (isIn === false) {
+      newCart.push({
+        info: manhwa,
+        quantity: 1,
+      });
+    }
+
+    setCart(newCart);
+  };
+
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
@@ -43,27 +65,7 @@ const ManhwaDetail = () => {
       <button
         className="ajoutPanier"
         onClick={() => {
-          const newCart = [...cart];
-          let manhwaToAdd = {
-            name: manhwaDetail.name,
-            price: manhwaDetail.price,
-            quantity: 1,
-          };
-
-          //avant de push manhwa, je vérifie si ce manhwa est déjà dans mon tableau
-          let isIn = false;
-          for (let i = 0; i < newCart.length; i++) {
-            if (newCart[i].name === manhwaDetail.name) {
-              newCart[i].quantity++;
-              isIn = true;
-              break;
-            }
-          }
-          if (isIn === false) {
-            newCart.push(manhwaToAdd);
-          }
-
-          setCart(newCart);
+          handleAddToCart(manhwaDetail);
         }}
       >
         Ajouter au panier
