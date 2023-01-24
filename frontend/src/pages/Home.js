@@ -37,37 +37,17 @@ const Home = () => {
         info: manhwa,
         quantity: 1,
       });
-    } else {
-      for (let i = 0; i < newCart.length; i++) {
-        console.log(newCart[i].info.id);
-        if (newCart[i].info.id === manhwa.id) {
-          newCart[i].quantity++;
-          // break;
-        } else {
-          newCart.push({
-            info: manhwa,
-            quantity: 1,
-          });
-        }
+      } else {
+        const id = manhwaclique.info.id;
+        const quantity = 1;
+        newCart.push({
+          info: id,
+          quantity: quantity,
+        });
       }
-    }
+    });
 
     setCart(newCart);
-
-    // if (newCart.length !== 0) {
-    //   let manhwaIsInCart = newCart.find((item) => item.name === manhwa.name);
-    //   console.log(manhwaIsInCart);
-    //   if ((manhwaIsInCart = undefined)) {
-    //     let manhwaToAdd = {
-    //       name: manhwa.name,
-    //       price: manhwa.price,
-    //       quantity: 1,
-    //     };
-    //     newCart.push(manhwaToAdd);
-    //   } else {
-    //     manhwaIsInCart.quantity++;
-    //   }
-    // }
   };
 
   return isLoading ? (
