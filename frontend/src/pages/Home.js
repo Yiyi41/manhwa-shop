@@ -35,7 +35,7 @@ const Home = () => {
     let isIn = false; //pour memoriser si on l'a trouvé
     for (let i = 0; i < newCart.length; i++) {
       // on boucle sur les element du panier
-      if (newCart[i].info.id === manhwa.id) {
+      if (newCart[i]["info"]["id"] === manhwa.id) {
         // on l'a trouvé
         isIn = true; //on le note pour eviter de l'ajouter dans le panier après
         newCart[i].quantity++; // on ajoute 1 a la quantité de cet article

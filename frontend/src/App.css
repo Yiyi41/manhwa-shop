@@ -226,7 +226,17 @@ summary:hover {
 }
 .OnemanhwaTotal,
 select {
-  margin-top: 30px;
+  margin-top: 5px;
+}
+.ajoutSuppression {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 40px 0;
+}
+#poubelle {
+  width: 25px;
+  height: 30px;
 }
 .footer img {
   width: 25px;

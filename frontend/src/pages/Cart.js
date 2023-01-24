@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { CartContext } from "../context/cartContext";
+import { Link } from "react-router-dom";
+import poubelle from "../assets/poubelle.png"
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -14,7 +16,9 @@ const Cart = () => {
             return (
               <div key={itemList.info.id} className="manhwa-card-cart">
                 <div className="imgLeft">
+                <Link to={`/detail/${itemList.info.id}`}>
                   <img src={itemList["info"]["img"]} alt="manhwa" />
+                  </Link>
                   <p className="unitaire">
                     {itemList.info.price} € <br />
                     <span className="prixUnitaire"> prix unit.</span>
@@ -22,8 +26,9 @@ const Cart = () => {
                 </div>
                 <div className="cardInfos">
                   <p>{itemList.info.name}</p>
-                  <p>{itemList.info.author}</p>
+                  {/* <p>{itemList.info.author}</p> */}
                   {/* <p>{manhwa.artist}</p> */}
+                  <div className="ajoutSuppression">
                   <select name="quantityManhwa">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -36,6 +41,8 @@ const Cart = () => {
                     <option value="9">9</option>
                     <option value="10">10</option>
                   </select>
+                  <img src={poubelle} alt="icone poubelle" id="poubelle"/>
+                  </div>
                   <p className="OnemanhwaTotal">total One manhwa</p>
                 </div>
               </div>
