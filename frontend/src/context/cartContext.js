@@ -11,22 +11,3 @@ export default function CartProvider(props) {
     </CartContext.Provider>
   );
 }
-
-// export const CartContext = createContext({
-//   manhwaInfo: {},
-//   quantity: 0,
-//   setCartContext: (info) => {},
-// });
-
-// export default function CartProvider(props) {
-//   const cartState = {
-//     manhwaInfo: {},
-//     quantity: 0,
-//     setCartContext: (info) =>
-//       setCart((prevState) => ({
-//         ...prevState,
-//         manhwaInfo: info.manhwaInfo,
-//         quantity: info.quantity,
-//       })),
-//   };
-//   const [cart, setCart] = useState(cartState);
