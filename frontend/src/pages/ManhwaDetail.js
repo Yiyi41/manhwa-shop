@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { CartContext } from "../context/cartContext";
 
 const ManhwaDetail = () => {
   const [manhwaDetail, setManhwaDetail] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [cart, setCart] = useState([]);
+  const { cart, setCart } = useContext(CartContext);
 
   const { id } = useParams();
 

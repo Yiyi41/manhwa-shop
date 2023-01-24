@@ -14,7 +14,7 @@ const Cart = () => {
             return (
               <div key={itemList.info.id} className="manhwa-card-cart">
                 <div className="imgLeft">
-                  <img src={itemList.info.img} alt="manhwa" />
+                  <img src={itemList["info"]["img"]} alt="manhwa" />
                   <p className="unitaire">
                     {itemList.info.price} € <br />
                     <span className="prixUnitaire"> prix unit.</span>
