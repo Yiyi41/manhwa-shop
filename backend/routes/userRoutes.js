@@ -12,19 +12,26 @@ const userRoutes = (app, db) => {
       const newSalt = uid2(16);
       const newHash = SHA256(req.body.password + newSalt).toString(encBase64);
       const firstname = req.body.firstname;
+      const name = req.body.name;
       const email = req.body.email;
       const password = newHash;
 
       const checkUser = await db.query("SELECT * FROM User WHERE email = ?", [
         email,
       ]);
-      console.log(checkUser);
+
       if (checkUser.length === 0) {
         const responseDB = await db.query(
-          "INSERT INTO User (firstname,email,password,salt ) VALUES (?,?,?,?)",
-          [firstname, email, password, newSalt]
+          "INSERT INTO User (firstname,name,email,password,salt ) VALUES (?,?,?,?,?)",
+          [firstname, name, email, password, newSalt]
         );
-        res.json({ status: 200, responseDB });
+        const userId = responseDB.insertId;
+        if (userId) {
+          const token = jwt.sign({ id: userId }, process.env.jwtokenKey, {
+            expiresIn: "2h",
+          });
+          res.json({ status: 200, userToken: token });
+        }
       } else {
         res.json({ status: 400, message: "ce mail existe déjà" });
       }

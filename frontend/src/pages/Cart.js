@@ -1,9 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../context/cartContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
-  //const itemList = cart.map((itemList) => itemList);
+  const navigate = useNavigate();
+
+  // vérifie si client est connecté
+  const checkUserToken = () => {
+    const userToken = localStorage.getItem("userToken");
+    if (userToken) {
+      navigate("/pay");
+    } else {
+      navigate("/signup");
+    }
+  };
+
+  // calculer le prix total
+  let totalPrice = 0;
+  cart.forEach((article) => {
+    totalPrice += article.info.price * article.quantity;
+  });
 
   return (
     <div>
@@ -41,6 +58,12 @@ const Cart = () => {
               </div>
             );
           })}
+
+      <div>
+        <span>Total </span>
+        <span>{totalPrice} €</span>
+      </div>
+      <button onClick={checkUserToken}>Valider mon panier</button>
     </div>
   );
 };
