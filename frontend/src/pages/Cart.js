@@ -22,6 +22,7 @@ const Cart = () => {
     totalPrice += article.info.price * article.quantity;
   });
 
+  console.log(totalPrice);
   return (
     <div>
       <h2>Mon panier</h2>
