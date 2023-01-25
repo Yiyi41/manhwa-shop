@@ -10,6 +10,7 @@ import ManhwaDetail from "./pages/ManhwaDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Cart from "./pages/Cart";
+import Paiement from "./pages/Paiement";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/pay" element={<Paiement />} />
       </Routes>
       <Footer />
     </div>

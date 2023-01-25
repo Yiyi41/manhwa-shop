@@ -1,32 +1,12 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CartContext } from "../context/cartContext";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import poubelle from "../assets/poubelle.png"
-
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
-  const navigate = useNavigate();
-  
+  //const itemList = cart.map((itemList) => itemList);
 
-  // vérifie si client est connecté
-  const checkUserToken = () => {
-    const userToken = localStorage.getItem("userToken");
-    if (userToken) {
-      navigate("/pay");
-    } else {
-      navigate("/signup");
-    }
-  };
-
-  // calculer le prix total
-  let totalPrice = 0;
-  cart.forEach((article) => {
-    totalPrice += article.info.price * article.quantity;
-  });
-
-  console.log(totalPrice);
-  ////ajout handleselect handledelete//////////
   const handleSelect = (value, currentManhwa) => {
     //console.log(value, currentManhwa);
     
@@ -44,7 +24,7 @@ const Cart = () => {
    newCart.splice(index,1);
    setCart(newCart)
   }
-  ///////////////////////////////////
+
   return (
     <div>
       <h2>Mon panier</h2>
@@ -56,7 +36,7 @@ const Cart = () => {
                 <div className="imgLeft">
                 <Link to={`/detail/${itemList.info.id}`}>
                   <img src={itemList["info"]["img"]} alt="manhwa" />
-                  </Link>                 
+                  </Link>
                   <p className="unitaire">
                     {itemList.info.price} € <br />
                     <span className="prixUnitaire"> prix unit.</span>
@@ -93,13 +73,9 @@ const Cart = () => {
             );
           })}
 
-      <div>
-        <span>Total </span>
-        <span>{totalPrice} €</span>
-      </div>
-      <button onClick={checkUserToken}>Valider mon panier</button>
     </div>
   );
 };
 
 export default Cart;
+
