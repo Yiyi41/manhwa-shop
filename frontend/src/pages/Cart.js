@@ -7,6 +7,24 @@ const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
   //const itemList = cart.map((itemList) => itemList);
 
+  const handleSelect = (value, currentManhwa) => {
+    //console.log(value, currentManhwa);
+    
+   const newCart = [...cart];
+   const index = newCart.indexOf(currentManhwa)
+   //console.log(index);
+   newCart[index]["quantity"] = value
+  // console.log(newCart[index]);
+  setCart(newCart)
+  //console.log(cart);
+  }
+  const handledelete = (currentManhwa) =>{
+    const newCart = [...cart];
+   const index = newCart.indexOf(currentManhwa)
+   newCart.splice(index,1);
+   setCart(newCart)
+  }
+
   return (
     <div>
       <h2>Mon panier</h2>
@@ -29,7 +47,13 @@ const Cart = () => {
                   {/* <p>{itemList.info.author}</p> */}
                   {/* <p>{manhwa.artist}</p> */}
                   <div className="ajoutSuppression">
-                  <select name="quantityManhwa">
+                  <div className="quantite">
+                 <span> Quantité: </span>
+                  <select name={itemList.info.id}  
+                  value={itemList.quantity}
+                  onChange={(event)=>{
+                  handleSelect(event.currentTarget.value,itemList)
+                  }}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -41,9 +65,12 @@ const Cart = () => {
                     <option value="9">9</option>
                     <option value="10">10</option>
                   </select>
-                  <img src={poubelle} alt="icone poubelle" id="poubelle"/>
                   </div>
-                  <p className="OnemanhwaTotal">total One manhwa</p>
+                  <img src={poubelle} alt="icone poubelle" id="poubelle" 
+                  onClick={(() => handledelete(itemList))}/>
+                  </div>
+                  {/* <p className="OnemanhwaTotal">quantité: {itemList.quantity} </p> */}
+                  <p className="OnemanhwaTotal">total: {itemList.info.price * itemList.quantity} € </p>
                 </div>
               </div>
             );

@@ -238,6 +238,9 @@ select {
   width: 25px;
   height: 30px;
 }
+#poubelle:hover, select:hover, .ajoutPanier:hover{
+  cursor: pointer;
+}
 .footer img {
   width: 25px;
 }
