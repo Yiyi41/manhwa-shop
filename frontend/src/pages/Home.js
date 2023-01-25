@@ -6,13 +6,11 @@ import { CartContext } from "../context/cartContext";
 
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
-  const [isLoading, setIsLoading] = useState(true); // pour ne rien afficher tant qu'on n'a pas la liste des Manhuas
+  const [isLoading, setIsLoading] = useState(true);
   // attention!!! il faut utiliser {} pour useContext, pas []
   // Sinon on a l'erreur "not iterable"
   const { cart, setCart } = useContext(CartContext); //le state cart est dans un useContext pour etre accessible de partout (dans le header, dans la page panier...)
 
-  // on recupere la liste des manhuas
-  // n'est executé qu'une fois car le useEffect a pour argument []
   useEffect(() => {
     const fetchManhwaList = async () => {
       try {
@@ -59,6 +57,14 @@ const Home = () => {
   ) : (
     <div>
       <SearchBar />
+      <div>
+        <button>Comedie</button>
+        <button>Romance</button>
+        <button>Action</button>
+        <button>Fantaisie</button>
+        <button>Arts Martiaux</button>
+        <button>Aventure</button>
+      </div>
       <div className="manhwaList-container">
         {manhwaList.map((manhwa) => {
           return (
