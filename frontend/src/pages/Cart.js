@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
+  
 
   // vérifie si client est connecté
   const checkUserToken = () => {
