@@ -27,6 +27,7 @@ const Signup = () => {
         // si signup reussi, le userToken sera envoyé au front, et ensuite stocké dans localstorage
         if (response.data.userToken) {
           localStorage.setItem("userToken", response.data.userToken);
+          localStorage.setItem("userId", response.data.userId);
           navigate("/cart");
         }
       }

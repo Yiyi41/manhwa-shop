@@ -2,6 +2,7 @@ const manhwaRoutes = (app, db) => {
   /* get all manhwas*/
   app.get("/manhwas", async (req, res) => {
     const responseDB = await db.query("SELECT * FROM Manhwa");
+
     res.json({ status: 200, responseDB });
   });
 
