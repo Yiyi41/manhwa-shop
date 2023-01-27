@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
 import logo from "../assets/logo-v1-manhwa.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
@@ -13,22 +12,19 @@ const Header = () => {
   const { cart, setCart } = useContext(CartContext);
   let quantity = 0;
   for (let i = 0; i < cart.length; i++) {
-    quantity += cart[i].quantity;
+    quantity += parseInt(cart[i].quantity);
   }
 
   return (
     <div className="header-container">
-      {/* <FontAwesomeIcon icon="bars" className="bars-icon" /> */}
       <img src={menu} alt="" className="bars-icon" />
       <Link to="/">
         <img src={logo} alt="logo du site" className="logo" />
       </Link>
 
       <div className="block-right">
-        {/* <FontAwesomeIcon icon="user" className="user-icon" /> */}
         <img src={profil} alt="" className="user-icon" />
         <Link to="/cart" className="cart-link-header">
-          {/* <FontAwesomeIcon icon="cart-arrow-down" className="cart-icon" /> */}
           <img src={panier} alt="" className="cart-icon" />
         </Link>
         {quantity > 0 && <span className="nbInCart">{quantity}</span>}

@@ -30,7 +30,7 @@ const userRoutes = (app, db) => {
           const token = jwt.sign({ id: userId }, process.env.jwtokenKey, {
             expiresIn: "2h",
           });
-          res.json({ status: 200, userToken: token });
+          res.json({ status: 200, userToken: token, userId: userId });
         }
       } else {
         res.json({ status: 400, message: "ce mail existe déjà" });
@@ -61,7 +61,7 @@ const userRoutes = (app, db) => {
               expiresIn: "2h",
             }
           );
-          res.json({ status: 200, userToken: token, user: userToFind });
+          res.json({ status: 200, userToken: token, userId: userToFind[0].id });
         } else {
           res.json({ status: 400, message: "connexion non autorisée" });
         }
