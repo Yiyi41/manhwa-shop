@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -25,7 +25,8 @@ const Login = () => {
         // si login reussi, le userToken sera envoyé, et ensuite stocké dans localstorage
         if (response.data.userToken) {
           localStorage.setItem("userToken", response.data.userToken);
-          navigate("/");
+          localStorage.setItem("userId", response.data.userId);
+          navigate("/cart");
         }
       } catch (error) {
         console.log(error);
@@ -53,6 +54,9 @@ const Login = () => {
       <button type="submit" className="validation-input">
         Connexion
       </button>
+      <Link to="/signup">
+        <p>Créer un compte</p>
+      </Link>
     </form>
   );
 };

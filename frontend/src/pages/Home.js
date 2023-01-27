@@ -7,7 +7,7 @@ import Categories from "../components/Categories";
 
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
-  const [isLoading, setIsLoading] = useState(true); // pour ne rien afficher tant qu'on n'a pas la liste des Manhuas
+  const [isLoading, setIsLoading] = useState(true);
   // attention!!! il faut utiliser {} pour useContext, pas []
   // Sinon on a l'erreur "not iterable"
   const { cart, setCart } = useContext(CartContext); //le state cart est dans un useContext pour etre accessible de partout (dans le header, dans la page panier...)
@@ -17,9 +17,6 @@ const Home = () => {
   const {categorieFiltree , setCategorieFiltree}= useContext(CartContext)
 //
 
-//
-  // on recupere la liste des manhuas
-  // n'est executé qu'une fois car le useEffect a pour argument []
   useEffect(() => {
     const fetchManhwaList = async () => {
       try {
@@ -45,7 +42,7 @@ const Home = () => {
     let isIn = false; //pour memoriser si on l'a trouvé
     for (let i = 0; i < newCart.length; i++) {
       // on boucle sur les element du panier
-      if (newCart[i].info.id === manhwa.id) {
+      if (newCart[i]["info"]["id"] === manhwa.id) {
         // on l'a trouvé
         isIn = true; //on le note pour eviter de l'ajouter dans le panier après
         newCart[i].quantity++; // on ajoute 1 a la quantité de cet article

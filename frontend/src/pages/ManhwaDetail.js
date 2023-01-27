@@ -53,7 +53,7 @@ const ManhwaDetail = () => {
     <div key={manhwaDetail.id} className="manhwaDetails">
       <p>{manhwaDetail.name}</p>
       <p>Auteur: {manhwaDetail.author}</p>
-      <p> {manhwaDetail.artist ? manhwaDetail.artist : ""}</p>
+      <p> Artist: {manhwaDetail.artist ? manhwaDetail.artist : ""}</p>
       <img src={manhwaDetail.img} alt="manhwa" />
       {/* <div className="cardInfos"> */}
       {/* <p>{manhwa.artist}</p> */}

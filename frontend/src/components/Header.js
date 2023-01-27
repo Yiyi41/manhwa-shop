@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
 import logo from "../assets/logo-v1-manhwa.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
@@ -22,7 +21,7 @@ const Header = () => {
   const { cart, setCart } = useContext(CartContext);
   let quantity = 0;
   for (let i = 0; i < cart.length; i++) {
-    quantity += cart[i].quantity;
+    quantity += parseInt(cart[i].quantity);
   }
   //
 const handleCategories = (categorie) =>{
@@ -32,17 +31,19 @@ const handleCategories = (categorie) =>{
 //
   return (
     <div className="header-container">
-      {/* <FontAwesomeIcon icon="bars" className="bars-icon" /> */}
       <img src={menu} alt="" className="bars-icon" />
       <Link to="/" onClick={()=>handleCategories("")}>
         <img src={logo} alt="logo du site" className="logo" />
       </Link>
 
       <div className="block-right">
-        {/* <FontAwesomeIcon icon="user" className="user-icon" /> */}
         <img src={profil} alt="" className="user-icon" />
+<<<<<<< HEAD
         <Link to="/cart" className="cart-link-header" >
           {/* <FontAwesomeIcon icon="cart-arrow-down" className="cart-icon" /> */}
+=======
+        <Link to="/cart" className="cart-link-header">
+>>>>>>> 5d3d5ef27c348ca624143531452a0085f9439d54
           <img src={panier} alt="" className="cart-icon" />
         </Link>
         {quantity > 0 && <span className="nbInCart">{quantity}</span>}

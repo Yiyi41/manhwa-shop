@@ -10,17 +10,7 @@ import ManhwaDetail from "./pages/ManhwaDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Cart from "./pages/Cart";
-import Paiement from "./pages/Paiement";
-
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faUser,
-  faBars,
-  faCartPlus,
-  faCartArrowDown,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
-library.add(faUser, faBars, faCartPlus, faCartArrowDown, faMagnifyingGlass);
+import ValidCart from "./pages/ValidCart";
 
 function App() {
 
@@ -43,7 +33,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pay" element={<Paiement />} />
+        <Route path="/cart/valid" element={<ValidCart />} />
       </Routes>
       <Footer />
     </div>
