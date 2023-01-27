@@ -38,12 +38,8 @@ const handleCategories = (categorie) =>{
 
       <div className="block-right">
         <img src={profil} alt="" className="user-icon" />
-<<<<<<< HEAD
         <Link to="/cart" className="cart-link-header" >
           {/* <FontAwesomeIcon icon="cart-arrow-down" className="cart-icon" /> */}
-=======
-        <Link to="/cart" className="cart-link-header">
->>>>>>> 5d3d5ef27c348ca624143531452a0085f9439d54
           <img src={panier} alt="" className="cart-icon" />
         </Link>
         {quantity > 0 && <span className="nbInCart">{quantity}</span>}
