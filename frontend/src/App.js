@@ -1,4 +1,4 @@
-// import { useState } from "react";
+ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 //import components
@@ -23,11 +23,22 @@ import {
 library.add(faUser, faBars, faCartPlus, faCartArrowDown, faMagnifyingGlass);
 
 function App() {
+
+   //   On stock la catégorie filtrée dans un state pour l'appliquer..
+   const [categorieFiltreeApp, setCategorieFiltreeApp]= useState("")
+   //
+   //
+   const handleCategories = () =>{
+     setCategorieFiltreeApp("")
+
+     console.log(categorieFiltreeApp);
+   }
+   //
   return (
     <div className="app">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home  />} />
         <Route path="/detail/:id" element={<ManhwaDetail />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

@@ -246,6 +246,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin: 40px 0;
 }
 .footer img {
   width: 25px;

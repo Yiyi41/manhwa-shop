@@ -8,6 +8,15 @@ import profil from "../assets/profil.png";
 import menu from "../assets/hamburger.png";
 
 const Header = () => {
+  const {categorieFiltree , setCategorieFiltree}= useContext(CartContext)
+//   const [needCategorie, setNeedCategorie] = useState(categorieFiltree)
+//   useEffect(() => {
+//     // Ne rien faire si la modal est fermée
+//     if (needCategorie !== "") {
+//         return;
+//     }
+//     setCategorieFiltree("")
+// }, [needCategorie]);
   // attention!!! il faut utiliser {} pour useContext, pas [].
   // Sinon on a l'erreur "not iterable"
   const { cart, setCart } = useContext(CartContext);
@@ -15,19 +24,24 @@ const Header = () => {
   for (let i = 0; i < cart.length; i++) {
     quantity += cart[i].quantity;
   }
-
+  //
+const handleCategories = (categorie) =>{
+  setCategorieFiltree(categorie)
+  console.log(categorieFiltree);
+}
+//
   return (
     <div className="header-container">
       {/* <FontAwesomeIcon icon="bars" className="bars-icon" /> */}
       <img src={menu} alt="" className="bars-icon" />
-      <Link to="/">
+      <Link to="/" onClick={()=>handleCategories("")}>
         <img src={logo} alt="logo du site" className="logo" />
       </Link>
 
       <div className="block-right">
         {/* <FontAwesomeIcon icon="user" className="user-icon" /> */}
         <img src={profil} alt="" className="user-icon" />
-        <Link to="/cart" className="cart-link-header">
+        <Link to="/cart" className="cart-link-header" >
           {/* <FontAwesomeIcon icon="cart-arrow-down" className="cart-icon" /> */}
           <img src={panier} alt="" className="cart-icon" />
         </Link>

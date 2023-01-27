@@ -8,18 +8,16 @@ const Categories = (props)=> {
 
 //
     return (
-        <div>
-        <h2>Categories</h2>
         <div className="categories">
-        {categories.map(categorie =>{ 
-            return(
-        <button key={categorie}
-        name={categorie}
-        onClick={()=> props.handleCategories(categorie)}
-        >
-        {categorie ? categorie : "Tous les manhwas"}
-        </button>)
-        })}</div>
+            {categories.map(categorie =>{ 
+                return(
+            <button key={categorie}
+            name={categorie}
+            onClick={()=> props.handleCategories(categorie)}
+            >
+            {categorie ? categorie : "Tous les manhwas"}
+            </button>
+            )})}
         </div>
     )
 }

@@ -14,7 +14,7 @@ const Home = () => {
 //
   
 //   On stock la catégorie filtrée dans un state pour l'appliquer..
-  const [categorieFiltree, setCategorieFiltree]= useState("")
+  const {categorieFiltree , setCategorieFiltree}= useContext(CartContext)
 //
 
 //
@@ -75,8 +75,9 @@ const handleCategories = (categorie) =>{
     <span>En cours de chargement...</span>
   ) : (
     <div>
-      <Categories  handleCategories = {handleCategories}/>
+      
       <SearchBar   />
+      <Categories  handleCategories = {handleCategories}/>
       <div className="manhwaList-container">
         <h2>{categorieFiltree ? categorieFiltree : ""} </h2>
         {categorieFiltree === "" ?
