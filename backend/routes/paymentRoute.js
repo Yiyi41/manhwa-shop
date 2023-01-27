@@ -19,8 +19,8 @@ const paymentRoute = (app, db) => {
     console.log("responseStatus", response.status);
     if (response.status === "succeeded") {
       const responseDB = await db.query(
-        "INSERT INTO payements (userId,orderNumberStipe,amount,paymentDate ) VALUES (?,?,?,?)",
-        [firstname, name, email, password, newSalt]
+        "INSERT INTO payements (userId,orderNumberStipe,amount,paymentDate ) VALUES (?,?,?,?)"
+        // [firstname, name, email, password, newSalt]
       );
     }
 
