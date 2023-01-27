@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { CartContext } from "../context/cartContext";
+import Categories from "../components/Categories";
 
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
@@ -10,6 +11,11 @@ const Home = () => {
   // attention!!! il faut utiliser {} pour useContext, pas []
   // Sinon on a l'erreur "not iterable"
   const { cart, setCart } = useContext(CartContext); //le state cart est dans un useContext pour etre accessible de partout (dans le header, dans la page panier...)
+//
+  
+//   On stock la catégorie filtrée dans un state pour l'appliquer..
+  const {categorieFiltree , setCategorieFiltree}= useContext(CartContext)
+//
 
   useEffect(() => {
     const fetchManhwaList = async () => {
@@ -18,12 +24,15 @@ const Home = () => {
         const response = await axios.get("http://localhost:4000/manhwas");
         setManhwaList(response.data.responseDB);
         setIsLoading(false); // pour ne rien afficher tant qu'on n'a pas la liste
+        
       } catch (error) {
         console.log(error.response);
       }
     };
     fetchManhwaList();
+
   }, []);
+
 
   const handleAddToCart = (manhwa) => {
     // on copie le tableau car on ne peut pas modifier un state directement il faudra utiliser setCart
@@ -50,23 +59,26 @@ const Home = () => {
     }
     // maintenant que les modification sont faite on peux mettre à jour le state
     setCart(newCart);
+    
   };
 
+//
+const handleCategories = (categorie) =>{
+  setCategorieFiltree(categorie)
+}
+//
+//
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <div>
-      <SearchBar />
-      <div>
-        <button>Comedie</button>
-        <button>Romance</button>
-        <button>Action</button>
-        <button>Fantaisie</button>
-        <button>Arts Martiaux</button>
-        <button>Aventure</button>
-      </div>
+      
+      <SearchBar   />
+      <Categories  handleCategories = {handleCategories}/>
       <div className="manhwaList-container">
-        {manhwaList.map((manhwa) => {
+        <h2>{categorieFiltree ? categorieFiltree : ""} </h2>
+        {categorieFiltree === "" ?
+          manhwaList.map((manhwa) => {
           return (
             <div key={manhwa.id} className="manhwa-card">
               <Link to={`/detail/${manhwa.id}`}>
@@ -88,10 +100,36 @@ const Home = () => {
               </div>
             </div>
           );
-        })}
+        })
+        :
+        manhwaList.map((manhwa) => { if(manhwa.genre === categorieFiltree)
+          return (
+            <div key={manhwa.id} className="manhwa-card">
+              <Link to={`/detail/${manhwa.id}`}>
+                <img src={manhwa.img} alt="manhwa" />
+              </Link>
+              <div className="cardInfos">
+                <p>{manhwa.name}</p>
+                <p>{manhwa.author}</p>
+                {/* <p>{manhwa.artist}</p> */}
+                <p>{manhwa.price} €</p>
+                <button
+                  className="ajoutPanier"
+                  onClick={() => {
+                    handleAddToCart(manhwa);
+                  }}
+                >
+                  Ajouter au panier
+                </button>
+              </div>
+            </div>
+          );
+        })
+        } 
       </div>
     </div>
   );
 };
+
 
 export default Home;

@@ -242,6 +242,12 @@ select {
 #poubelle:hover, select:hover, .ajoutPanier:hover{
   cursor: pointer;
 }
+.categories{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 40px 0;
+}
 .footer img {
   width: 25px;
 }
