@@ -26,7 +26,8 @@ const Login = () => {
         if (response.data.userToken) {
           localStorage.setItem("userToken", response.data.userToken);
           localStorage.setItem("userId", response.data.userId);
-          navigate("/cart");
+          localStorage.setItem("userName", response.data.userName);
+          navigate("/");
         }
       } catch (error) {
         console.log(error);
@@ -35,7 +36,7 @@ const Login = () => {
   };
 
   return (
-    <form className="form" onSubmit={handlLogin}>
+    <form className="login-form" onSubmit={handlLogin}>
       <span className="title">Connectez-vous</span>
       <input
         required
@@ -54,7 +55,7 @@ const Login = () => {
       <button type="submit" className="validation-input">
         Connexion
       </button>
-      <Link to="/signup">
+      <Link to="/signup" className="signup-redirect">
         <p>Créer un compte</p>
       </Link>
     </form>

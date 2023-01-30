@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
 
 const ManhwaDetail = () => {
@@ -51,19 +51,24 @@ const ManhwaDetail = () => {
     <span>En cours de chargement...</span>
   ) : (
     <div key={manhwaDetail.id} className="manhwaDetails">
-      <p>{manhwaDetail.name}</p>
-      <p>Auteur: {manhwaDetail.author}</p>
-      <p> Artist: {manhwaDetail.artist ? manhwaDetail.artist : ""}</p>
-      <img src={manhwaDetail.img} alt="manhwa" />
-      {/* <div className="cardInfos"> */}
-      {/* <p>{manhwa.artist}</p> */}
+      <p className="manhwaTitle-in-manhwaDetail">{manhwaDetail.name}</p>
+      <p className="cardInfos-author">Auteur: {manhwaDetail.author}</p>
+      <img
+        src={manhwaDetail.img}
+        alt="manhwa"
+        className="manhwa-img-in-manhwaDetail"
+      />
+
+      <p className="cardInfos-author">
+        Artist: {manhwaDetail.artist ? manhwaDetail.artist : "non communiqué"}
+      </p>
       <details>
         <summary>Voir le synopsis</summary>
         {manhwaDetail.resume}
       </details>
-      <p>{manhwaDetail.price} €</p>
+      <p className="cardInfos-price">{manhwaDetail.price}, 00 €</p>
       <button
-        className="ajoutPanier"
+        className="ajoutPanier-btn"
         onClick={() => {
           handleAddToCart(manhwaDetail);
         }}
@@ -71,7 +76,6 @@ const ManhwaDetail = () => {
         Ajouter au panier
       </button>
     </div>
-    // </div>
   );
 };
 

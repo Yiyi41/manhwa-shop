@@ -4,7 +4,8 @@ import { useState, useContext } from "react";
 import { CartContext } from "../context/cartContext";
 
 const CheckoutForm = ({ totalChecked, userId }) => {
-  //   console.log(totalChecked);
+  // console.log(totalChecked);
+  // console.log(userId);
   const { cart, setCart } = useContext(CartContext);
 
   const stripe = useStripe();
@@ -14,35 +15,36 @@ const CheckoutForm = ({ totalChecked, userId }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-
+      // avoir la date du jour
       let todayDate = new Date();
       let payementDate =
-        todayDate.getDate() +
-        "/" +
+        todayDate.getFullYear() +
+        "-" +
         (todayDate.getMonth() + 1) +
-        "/" +
-        todayDate.getFullYear();
+        "-" +
+        todayDate.getDate();
 
-      //Etape 2:envoie numéro de carte + récupèrer les données cb
+      // récupèrer les données cb
       const cardInfos = elements.getElement(CardElement);
-      //Etape 3 et 4: Envoie ces données à l'API Stripe: vlaidation de la carte + réception d'un token
+
+      // Envoie ces données à l'API Stripe: vlaidation de la carte + réception d'un token
       const stripeResponse = await stripe.createToken(cardInfos, {
-        name: userId, // à la place du token on puisse envoyer l'id du user
+        name: userId, // envoyer l'id du user
       });
-      console.log("Stripe Response ===> ", stripeResponse);
-      console.log("stripeResponse.token.id", stripeResponse.token.id);
+
       const stripToken = stripeResponse.token.id;
-      // Envoie la requête à notre propre serveur
+      // Envoie la requête au back
       const response = await axios.post("http://localhost:4000/payment/valid", {
         total: totalChecked,
-        useId: userId,
+        userId: userId,
         cart: cart,
         source: stripToken,
         paymentDate: payementDate,
       });
-      console.log(response.data.status); // Succeeded
-      if (response.data.status === "succeeded") {
+      // console.log(response.data.status); // Succeeded
+      if (response.data.status === 200) {
         setCompleted(true);
+        setCart([]);
       }
     } catch (error) {
       console.log(error.message);
@@ -52,11 +54,14 @@ const CheckoutForm = ({ totalChecked, userId }) => {
     <div className="checkoutContainer">
       {!completed ? (
         <form onSubmit={handleSubmit}>
+          <p className="message-before-payement">
+            Le total de votre panier est <span>{totalChecked} €</span>
+          </p>
           <CardElement className="cardInfo" />
           <input className="pay-btn" type="submit" value="Pay" />
         </form>
       ) : (
-        <span>Paiement effectué ! </span>
+        <span className="message-after-payement">Paiement effectué ! </span>
       )}
     </div>
   );

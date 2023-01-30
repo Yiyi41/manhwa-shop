@@ -28,7 +28,8 @@ const Signup = () => {
         if (response.data.userToken) {
           localStorage.setItem("userToken", response.data.userToken);
           localStorage.setItem("userId", response.data.userId);
-          navigate("/cart");
+          localStorage.setItem("userName", response.data.userName);
+          navigate("/");
         }
       }
     } catch (error) {
@@ -39,40 +40,41 @@ const Signup = () => {
   return (
     <div className="signup">
       <h3>Créer votre compte et bénéficiez de nos avantages adhérents</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="signupInput">
-          <input
-            type="text"
-            placeholder="prénom"
-            required
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="nom"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+      <form onSubmit={handleSubmit} className="signup-form">
+        <input
+          type="text"
+          placeholder="prénom"
+          required
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="nom"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-          <input
-            type="email"
-            placeholder="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="mot de passe"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Créer un compte</button>
-        <Link to="/login">
+        <input
+          type="email"
+          placeholder="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="mot de passe"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit" className="validation-creation-input">
+          Créer un compte
+        </button>
+        <Link to="/login" className="login-redirect">
           <p>J'ai déjà un compte</p>
         </Link>
       </form>

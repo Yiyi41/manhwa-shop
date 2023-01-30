@@ -26,11 +26,17 @@ const userRoutes = (app, db) => {
           [firstname, name, email, password, newSalt]
         );
         const userId = responseDB.insertId;
+        const userName = responseDB.firstname;
         if (userId) {
           const token = jwt.sign({ id: userId }, process.env.jwtokenKey, {
             expiresIn: "2h",
           });
-          res.json({ status: 200, userToken: token, userId: userId });
+          res.json({
+            status: 200,
+            userToken: token,
+            userId: userId,
+            userName: userName,
+          });
         }
       } else {
         res.json({ status: 400, message: "ce mail existe déjà" });
@@ -61,7 +67,12 @@ const userRoutes = (app, db) => {
               expiresIn: "2h",
             }
           );
-          res.json({ status: 200, userToken: token, userId: userToFind[0].id });
+          res.json({
+            status: 200,
+            userToken: token,
+            userId: userToFind[0].id,
+            userName: userToFind[0].firstname,
+          });
         } else {
           res.json({ status: 400, message: "connexion non autorisée" });
         }
@@ -70,6 +81,20 @@ const userRoutes = (app, db) => {
       }
     } catch (error) {
       console.log(error);
+    }
+  });
+
+  app.get("/payments/:userid", async (req, res) => {
+    const userId = req.params.userid;
+    const responseDB = await db.query(
+      "SELECT * FROM payments WHERE userId = ?",
+      [userId]
+    );
+    console.log(responseDB);
+    if (responseDB.length !== 0) {
+      res.json({ status: 200, responseDB });
+    } else {
+      res.status(404);
     }
   });
 };

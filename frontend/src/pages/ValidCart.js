@@ -33,9 +33,10 @@ const ValidCart = () => {
   checkPrices();
 
   return (
-    <div>
-      Le total de votre panier est <span>{totalChecked} €</span>
+    <div className="checkout-container">
+      {/* Le total de votre panier est <span>{totalChecked} €</span> */}
       <Elements stripe={stripePromise}>
+        {/* Le total de votre panier est <span>{totalChecked} €</span> */}
         <CheckoutForm totalChecked={totalChecked} userId={userId} />
       </Elements>
     </div>
