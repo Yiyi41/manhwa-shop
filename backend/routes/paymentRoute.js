@@ -41,6 +41,8 @@ const paymentRoute = (app, db) => {
         // console.log("orderToAdd", orderToAdd);
       });
 
+      const commitResult = await db.query("COMMIT");
+
       res.json({ status: 200 });
     }
   });

@@ -16,9 +16,14 @@ const paymentRoute = require("./routes/paymentRoute");
 app.use(express.urlencoded({ extended: true })); //des qu'on utilise un req.parser ; body parser convertie les string en objet ; app.use le fait dans toutes les routes ; il re-sépare tout
 app.use(express.json());
 
+// let database;
+// process.env["NODE_ENV"] == "test"
+//   ? (database = process.env.testDatabase)
+//   : (database = process.env.database);
+
 const connectionOptions = {
   host: process.env.host,
-  database: process.env.database,
+  database: database,
   user: process.env.user,
   password: process.env.password,
   port: process.env.port,

@@ -17,12 +17,15 @@ const CheckoutForm = ({ totalChecked, userId }) => {
       event.preventDefault();
       // avoir la date du jour
       let todayDate = new Date();
+      console.log("todayDate", todayDate);
       let payementDate =
         todayDate.getFullYear() +
         "-" +
         (todayDate.getMonth() + 1) +
         "-" +
         todayDate.getDate();
+
+      console.log("payementDate", payementDate);
 
       // récupèrer les données cb
       const cardInfos = elements.getElement(CardElement);

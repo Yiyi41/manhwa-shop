@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 const UserAccount = () => {
   const userId = localStorage.getItem("userId");
+  console.log(userId);
+
   const userName = localStorage.getItem("userName");
+  console.log(userName);
   const [getUserOrders, setGetUserOrders] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -57,7 +60,8 @@ const UserAccount = () => {
           return (
             <div key={order.id} className="account-payment-line">
               <p className="account-payment-detail">
-                {order.paymentDate.slice(0, 10)}
+                {/* {order.paymentDate.slice(0, 10)} */}
+                {order.paymentDate}
               </p>
               <p className="account-payment-detail">{order.amount} €</p>
               <p className="account-payment-detail">Livré</p>

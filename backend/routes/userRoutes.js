@@ -58,7 +58,7 @@ const userRoutes = (app, db) => {
         const newHash = SHA256(req.body.password + userToFind[0].salt).toString(
           encBase64
         );
-        // console.log(userToFind[0].salt);
+        console.log(userToFind[0].firstname);
         if (newHash === userToFind[0].password) {
           const token = jwt.sign(
             { id: userToFind[0].id },
@@ -86,11 +86,13 @@ const userRoutes = (app, db) => {
 
   app.get("/payments/:userid", async (req, res) => {
     const userId = req.params.userid;
+    console.log("userId", userId);
     const responseDB = await db.query(
       "SELECT * FROM payments WHERE userId = ?",
       [userId]
     );
     console.log(responseDB);
+    // res.json({ status: 200, responseDB });
     if (responseDB.length !== 0) {
       res.json({ status: 200, responseDB });
     } else {
