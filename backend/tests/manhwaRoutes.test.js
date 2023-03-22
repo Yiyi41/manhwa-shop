@@ -1,58 +1,58 @@
 const request = require("supertest");
-const app = require('../app');
-
-const {createConnection}=require("promise-mysql");
-const manhwaRoutes = require("../routes/manhwaRoutes");
-const userRoutes = require("../routes/userRoutes");
-const cartRoutes = require("../routes/cartRoutes");
-const paymentRoute = require("../routes/paymentRoute");
-
-
-let database;
-process.env["NODE_ENV"] == "test"
-  ? (database = process.env.testDatabase)
-  : (database = process.env.database);
-
-const connectionOptions = {
-  host: process.env.host,
-  database: database,
-  user: process.env.user,
-  password: process.env.password,
-  port: process.env.port,
-};
-
-const connection = createConnection(connectionOptions).then(async (db) => {
-  // app.get('/', async (req, res) => {
-  //   try {
-  //     res.sendStatus(200)
-  //   } catch (error) {
-  //    res.sendStatus(400)
-  //   }
-  // })
-    manhwaRoutes(app, db);
-    userRoutes(app, db);
-    cartRoutes(app, db);
-    paymentRoute(app, db);
-  });
+const { app, connection } = require("../app");
+const { dropData, seedData } = require("../initDB");
 
 beforeAll(async () => {
-  await connection;
-
+  await connection.then(async (db) => {
+    //DROP
+    await dropData(db);
+    //SEED
+    await seedData(db);
+  });
 });
 
-// afterAll(async() => {
-//   await connection.end();
-// });
-
-// beforeEach(async () => {
-//   await connection
-// });
-
-
-
 describe("manhwas routes", () => {
-
-  test("get manhwas list",() => {
-    return request(app).get("/").then(res => (expect(res.statusCode).toEqual(200)))
+  test("get manhwas list", () => {
+    return request(app)
+      .get("/manhwas")
+      .then((res) => expect(res.body.responseDB.length).toBe(1));
   });
+});
+
+describe("user signin route", () => {
+  test("get user after signin", () => {
+    return request(app)
+      .post("/login")
+      .send({ email: "lou@mail.com", password: "azerty" })
+      .then((res) => expect(res.statusCode).toBe(200));
+  });
+});
+
+describe("user signup routes", () => {
+  test("get user after signup", () => {
+    return request(app)
+      .post("/signup")
+      .send({
+        firstname: "Léa",
+        name: "Dupont",
+        email: "lea.dupont@mail.com",
+        password: "azerty",
+      })
+      .then((res) => expect(res.body.userId).toBe(13));
+  });
+
+  describe("cart routes", () => {
+    test("reveive status code 200 if cart is valided", () => {
+      return request(app)
+        .post("/cart/valid")
+        .send([
+          // orderNumber: "",
+          // manhwaId: "",
+          // quantity: 2,
+          // unitPrice:60,
+          // userId: '11',
+          // orderedDate:'2023-01-27',
+        ])
+        .then((res) => expect(res.body.userId).toBe(13));
+    });
 });

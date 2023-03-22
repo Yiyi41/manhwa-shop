@@ -6,7 +6,7 @@ const cors = require("cors");
 app.use(cors());
 // const stripe = require("stripe")(process.env.stripeKey);
 
-const mysql = require("promise-mysql");
+const { createConnection } = require("promise-mysql");
 const manhwaRoutes = require("./routes/manhwaRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
@@ -29,15 +29,21 @@ const connectionOptions = {
   port: process.env.port,
 };
 // console.log(mysql);
-mysql.createConnection(connectionOptions).then(async (db) => {
+const connection = createConnection(connectionOptions);
+
+connection.then(async (db) => {
+  app.get("/", (req, res) => {
+    try {
+      res.json({ status: 200, msg: "C'est good" });
+    } catch (error) {
+      res.send(error);
+    }
+  });
   manhwaRoutes(app, db);
   userRoutes(app, db);
   cartRoutes(app, db);
   paymentRoute(app, db);
 });
 
-app.get("/", (req, res) => {
-  res.json("Hello World");
-});
-
-module.exports = app;
+// export { app, connection }; es6
+module.exports = { app, connection }; // es5

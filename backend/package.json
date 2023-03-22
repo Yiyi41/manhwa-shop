@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest --runInBand --detectOpenHandles --ForceExit tests/manhwaRoutes.test.js"
+    "test": "jest --runInBand --forceExit"
   },
   "author": "",
   "license": "ISC",
