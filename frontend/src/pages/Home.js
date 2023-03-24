@@ -94,10 +94,10 @@ const Home = () => {
                 </div>
               );
             })
-          : manhwaList.map((manhwa) => {
-              if (manhwa.genre === categorieFiltree)
-                return (
-                  <div key={manhwa.id} className="manhwa-card">
+          // eslint-disable-next-line array-callback-return
+          : manhwaList.map( manhwa => { 
+            if (manhwa.genre === categorieFiltree)
+                return (<div key={manhwa.id} className="manhwa-card">
                     <Link
                       to={`/detail/${manhwa.id}`}
                       className="link-to-detail"

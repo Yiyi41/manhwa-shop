@@ -10,8 +10,8 @@ import check from "../assets/verifier.png";
 const Header = () => {
   const navigate = useNavigate();
 
-  const { categorieFiltree, setCategorieFiltree } = useContext(CartContext);
-  const { cart, setCart } = useContext(CartContext);
+  const { setCategorieFiltree } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   // attention!!! il faut utiliser {} pour useContext, pas [].
   // Sinon on a l'erreur "not iterable"
 

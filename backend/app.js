@@ -6,7 +6,7 @@ const cors = require("cors");
 app.use(cors());
 // const stripe = require("stripe")(process.env.stripeKey);
 
-const { createConnection } = require("promise-mysql");
+const { createPool } = require("promise-mysql");
 const manhwaRoutes = require("./routes/manhwaRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
@@ -22,14 +22,13 @@ process.env["NODE_ENV"] == "test"
   : (database = process.env.database);
 
 const connectionOptions = {
-  host: process.env.host,
-  database: database,
-  user: process.env.user,
-  password: process.env.password,
-  port: process.env.port,
+  host: process.env.MYSQL_HOST_IP,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 };
-// console.log(mysql);
-const connection = createConnection(connectionOptions);
+
+const connection = createPool(connectionOptions);
 
 connection.then(async (db) => {
   app.get("/", (req, res) => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";s
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 //import components
@@ -15,15 +15,14 @@ import UserAccount from "./pages/UserAccount";
 
 function App() {
   //   On stock la catégorie filtrée dans un state pour l'appliquer..
-  const [categorieFiltreeApp, setCategorieFiltreeApp] = useState("");
-  //
-  //
-  const handleCategories = () => {
-    setCategorieFiltreeApp("");
+  // const [categorieFiltreeApp, setCategorieFiltreeApp] = useState("");
 
-    console.log(categorieFiltreeApp);
-  };
-  //
+  // const handleCategories = () => {
+  //   setCategorieFiltreeApp("");
+
+  //   console.log(categorieFiltreeApp);
+  // };
+  
   return (
     <div className="app">
       <Header />

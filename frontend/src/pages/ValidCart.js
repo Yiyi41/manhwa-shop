@@ -13,7 +13,7 @@ const stripePromise = loadStripe(
 const ValidCart = () => {
   const [totalChecked, setTotalChecked] = useState(0);
 
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   const userId = localStorage.getItem("userId");
 
