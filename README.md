@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-Manhwa is original from Korea, like manga but onlie online reading. Many of manhwa fans are frusted by not have paper edition of their favarite mahwq. For this reason, I imagin this online shop for paper edition manhwa. I created user story then write the functional features, and made de screen design on figma. For this projet, I implemented strip feature for the payement.
+Manhwa comes from Korea and is equivalent of Manga in Japan. But there is a major difference, it is only online reading. Many manga fans are often frustrated not having a paper edition. This online shop is for those fans who like paper reading and collection addiction. I create usecase to imagine better user experience and make design with figma. For this project, I implemented strip feature for payement.
 
 ## Available Scripts
 
