@@ -2,7 +2,7 @@
 
 Manhwa comes from Korea and is equivalent of Manga in Japan. But there is a major difference, it is only online reading. Many manga fans are often frustrated not having a paper edition. This online shop is for those fans who like paper reading and collection addiction. I create usecase to imagine better user experience and make design with figma. For this project, I implemented strip feature for payement. 
 
-# Techno
+## Techno
 
 React for frontend, nodejs for back, sql and sequilize for database
 
