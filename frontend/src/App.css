@@ -95,6 +95,11 @@
   }
 
   /* home page */
+  .loading-message {
+    text-align: center;
+    font-size: 1.3em;
+  }
+
   .manhwaList-container {
     margin-top: 10px;
     display: flex;

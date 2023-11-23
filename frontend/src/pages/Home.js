@@ -26,7 +26,7 @@ const Home = () => {
         setManhwaList(response.data.responseDB);
         setIsLoading(false); // pour ne rien afficher tant qu'on n'a pas la liste
       } catch (error) {
-        console.log(error.response);
+        console.error("Error fetching manhwa list:", error);
       }
     };
     fetchManhwaList();
@@ -52,7 +52,7 @@ const Home = () => {
       // ===false si on ne l'a pas trouvé dans la boucle au dessus
       newCart.push({
         info: manhwa,
-        quantity: 1,
+        quantity: 1
       });
     }
     setCart(newCart);
@@ -65,7 +65,7 @@ const Home = () => {
   //
   //
   return isLoading ? (
-    <span>En cours de chargement...</span>
+    <span className="loading-message">En cours de chargement...</span>
   ) : (
     <div>
       {/* <SearchBar   /> */}
@@ -94,10 +94,11 @@ const Home = () => {
                 </div>
               );
             })
-          // eslint-disable-next-line array-callback-return
-          : manhwaList.map( manhwa => { 
-            if (manhwa.genre === categorieFiltree)
-                return (<div key={manhwa.id} className="manhwa-card">
+          : // eslint-disable-next-line array-callback-return
+            manhwaList.map((manhwa) => {
+              if (manhwa.genre === categorieFiltree)
+                return (
+                  <div key={manhwa.id} className="manhwa-card">
                     <Link
                       to={`/detail/${manhwa.id}`}
                       className="link-to-detail"

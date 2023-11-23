@@ -1,31 +1,25 @@
 require("dotenv").config();
+const { createPool } = require("promise-mysql");
 const express = require("express");
-const app = express();
-
 const cors = require("cors");
+
+const app = express();
 app.use(cors());
 // const stripe = require("stripe")(process.env.stripeKey);
 
-const { createPool } = require("promise-mysql");
 const manhwaRoutes = require("./routes/manhwaRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const paymentRoute = require("./routes/paymentRoute");
-// parse application/x-www-form-urlencoded
 
-app.use(express.urlencoded({ extended: true })); //des qu'on utilise un req.parser ; body parser convertie les string en objet ; app.use le fait dans toutes les routes ; il re-sépare tout
-app.use(express.json());
-
-let database;
-process.env["NODE_ENV"] == "test"
-  ? (database = process.env.testDatabase)
-  : (database = process.env.database);
+app.use(express.urlencoded({ extended: true }));
 
 const connectionOptions = {
-  host: process.env.MYSQL_HOST_IP,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
+  port: process.env.port
 };
 
 const connection = createPool(connectionOptions);
