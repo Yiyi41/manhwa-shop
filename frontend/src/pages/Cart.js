@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 // import axios from "axios";
 import poubelle from "../assets/poubelle.png";
 
+import "./Cart.css"
+
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
@@ -45,7 +47,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-container">
+    <div className="container">
       <h1>Mon panier</h1>
       {cart.length === 0 ? (
         <p className="message-in-cart">Votre panier est vide</p>

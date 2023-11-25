@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+
+import "./Home.css";
 // import SearchBar from "../components/SearchBar";
 import { CartContext } from "../context/cartContext";
 import Categories from "../components/Categories";
@@ -79,17 +81,19 @@ const Home = () => {
                     <img src={manhwa.img} alt="manhwa" className="manhwa-img" />
                   </Link>
                   <div className="cardInfos">
-                    <span className="cardInfos-title">{manhwa.name}</span>
-                    <span className="cardInfos-author">{manhwa.author}</span>
-                    <p className="cardInfos-price">{manhwa.price}, 00 €</p>
-                    <img
-                      src={panier}
-                      alt=""
-                      className="ajoutPanier-icon"
-                      onClick={() => {
-                        handleAddToCart(manhwa);
-                      }}
-                    />
+                    <span className="manhwa-title">{manhwa.name}</span>
+                    <span className="manhwa-author">{manhwa.author}</span>
+                    <div className="priceContainer">
+                      <p className="manhwa-price">{manhwa.price}, 00 €</p>
+                      <img
+                        src={panier}
+                        alt=""
+                        className="ajoutPanier-icon"
+                        onClick={() => {
+                          handleAddToCart(manhwa);
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               );
@@ -110,18 +114,20 @@ const Home = () => {
                       />
                     </Link>
                     <div className="cardInfos">
-                      <span className="cardInfos-title">{manhwa.name}</span>
-                      <span className="cardInfos-author">{manhwa.author}</span>
-                      <p className="cardInfos-price">{manhwa.price}, 00 €</p>
+                      <span className="manhwa-title">{manhwa.name}</span>
+                      <span className="manhwa-author">{manhwa.author}</span>
 
-                      <img
-                        src={panier}
-                        alt=""
-                        className="ajoutPanier-icon"
-                        onClick={() => {
-                          handleAddToCart(manhwa);
-                        }}
-                      />
+                      <div className="priceContainer">
+                        <p className="manhwa-price">{manhwa.price}, 00 €</p>
+                        <img
+                          src={panier}
+                          alt=""
+                          className="ajoutPanier-icon"
+                          onClick={() => {
+                            handleAddToCart(manhwa);
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 );

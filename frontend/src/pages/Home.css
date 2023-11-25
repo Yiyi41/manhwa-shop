@@ -1,0 +1,162 @@
+/* manhwa list container */
+.manhwaList-container {
+  /* border: 1px solid red; */
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  height: 100%;
+  margin: auto;
+  justify-content: center;
+}
+
+.manhwa-card {
+  height: 400px;
+  width: 250px;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 3fr 1fr;
+  gap: 0px 0px;
+  justify-items: center;
+  align-items: center;
+}
+
+.manhwa-card:hover {
+  /* border: 1px lightblue solid; */
+  height: 420px;
+  width: 270px;
+  box-shadow: 3px 0px 5px 0px #777;
+  border-radius: 15px 5px;
+  transition: height width border-radius box-shadow 350ms ease-in-out;
+}
+
+.link-to-detail {
+  width: 200px;
+  height: 290px;
+}
+
+.manhwa-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px 5px;
+}
+
+.cardInfos {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.ajoutPanier-icon {
+  width: 25px;
+  aspect-ratio: 1/1;
+  right: 25px;
+  bottom: 20px;
+  background-color: #ee817e;
+  border-radius: 15px 3px;
+  cursor: pointer;
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.manhwa-title,
+.manhwa-author,
+.manhwa-price {
+  color: #777;
+}
+
+.manhwa-title {
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.manhwa-author {
+  font-size: 1rem;
+}
+
+.manhwa-price {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* .manhwaList-container > .manhwa-card > .cardInfos > .ajoutPanier-icon {
+  left: 208px;
+  top: 354px;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+} */
+/* @media (min-width: 390px) {
+
+  .loading-message {
+    text-align: center;
+    font-size: 1.3em;
+  }
+
+  .manhwaList-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .manhwaList-container > .manhwa-card {
+    position: relative;
+    width: 95%;
+    height: 220px;
+    border-radius: 15px 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 4px -5px 15px 10px rgb(218 218 226 / 20%);
+    justify-content: space-around;
+  }
+
+  .manhwa-img {
+    width: 140px;
+    height: auto;
+    border-radius: 15px 5px;
+  }
+
+  .manhwa-card-cart {
+    overflow: hidden;
+    width: 95%;
+    height: 220px;
+    border-radius: 15px 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 4px -5px 15px 10px rgb(218 218 226 / 20%);
+  }
+
+  .manhwaList-container > .manhwa-card > .cardInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+  }
+
+  .manhwa-card-cart {
+    height: 250px;
+  }
+
+  .totalContainer-in-cart {
+    font-size: 1.3rem;
+    font-style: oblique;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+} */
