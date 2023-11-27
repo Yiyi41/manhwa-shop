@@ -29,4 +29,8 @@ Runs the backend with npm start and then runs the frontend repo in development m
 
 Manhwa Shop is a personal project born out of a friend who is a fan of Manhwa and the desire to bring the joy of paper reading to fans worldwide. Please feel free to leave feedback. 
 
+<p align="left" >
+<img align="left" width="1000" src="https://res.cloudinary.com/dps4zteie/image/upload/v1701097240/Capture_d_e%CC%81cran_2023-11-27_a%CC%80_16.00.06_vfcp74.png"/>
+</p>
+
 
