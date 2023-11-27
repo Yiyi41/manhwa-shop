@@ -78,9 +78,9 @@ const Home = () => {
               return (
                 <div key={manhwa.id} className="manhwa-card">
                   <Link to={`/detail/${manhwa.id}`} className="link-to-detail">
-                    <img src={manhwa.img} alt="manhwa" className="manhwa-img" />
+                    <img src={manhwa.img} alt="manhwa" className="manhwaImg" />
                   </Link>
-                  <div className="cardInfos">
+                  <div className="manhwaInfos">
                     <span className="manhwa-title">{manhwa.name}</span>
                     <span className="manhwa-author">{manhwa.author}</span>
                     <div className="priceContainer">

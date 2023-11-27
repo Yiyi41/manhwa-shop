@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
 
+import "./ManhwaDetail.css"
+
 const ManhwaDetail = () => {
   const [manhwaDetail, setManhwaDetail] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -13,9 +15,7 @@ const ManhwaDetail = () => {
   useEffect(() => {
     const fetchManhwaDetail = async () => {
       try {
-        // console.log(id);
         const response = await axios.get(`http://localhost:4000/manhwas/${id}`);
-        // console.log(response.data.responseDB[0]);
         setManhwaDetail(response.data.responseDB[0]);
         setIsLoading(false);
       } catch (error) {
@@ -24,7 +24,7 @@ const ManhwaDetail = () => {
     };
     fetchManhwaDetail();
   }, [id]);
-  //console.log(manhwaDetail.Resume);
+
 
   const handleAddToCart = (manhwa) => {
     const newCart = [...cart];

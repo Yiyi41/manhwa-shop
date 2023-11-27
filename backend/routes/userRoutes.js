@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken");
 const userRoutes = (app, db) => {
   /* user signup */
   app.post("/signup", async (req, res) => {
+
+
     try {
       const newSalt = uid2(16);
       const newHash = SHA256(req.body.password + newSalt).toString(encBase64);
@@ -15,6 +17,10 @@ const userRoutes = (app, db) => {
       const name = req.body.name;
       const email = req.body.email;
       const password = newHash;
+      console.log("================================")
+      console.log("req.body: ", req.body)
+
+      console.log("firstname, name, email, password: ", firstname, name, email, password);
 
       const checkUser = await db.query("SELECT * FROM User WHERE email = ?", [
         email,
@@ -22,9 +28,7 @@ const userRoutes = (app, db) => {
 
       if (checkUser.length === 0) {
         const responseDB = await db.query(
-          "INSERT INTO User (firstname,name,email,password,salt ) VALUES (?,?,?,?,?)",
-          [firstname, name, email, password, newSalt]
-        );
+          "INSERT INTO User (firstname,name,email,password,salt ) VALUES (?,?,?,?,?)",[firstname, name, email, password, newSalt]);
         const userId = responseDB.insertId;
         const userName = responseDB.firstname;
         if (userId) {

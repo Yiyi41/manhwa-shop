@@ -50,16 +50,16 @@ const Cart = () => {
     <div className="container">
       <h1>Mon panier</h1>
       {cart.length === 0 ? (
-        <p className="message-in-cart">Votre panier est vide</p>
+        <p className="emptyCartMessage">Votre panier est vide</p>
       ) : (
         cart.map((itemList) => {
           return (
-            <div key={itemList.info.id} className="manhwa-card-cart">
-              <Link to={`/detail/${itemList.info.id}`}>
+            <div key={itemList.info.id} className="cartContent ">
+              <Link to={`/detail/${itemList.info.id}`} className="imgContainer">
                 <img
                   src={itemList["info"]["img"]}
                   alt="manhwa"
-                  className="manhwa-img"
+                 className="produitImg"
                 />
               </Link>
 
@@ -111,10 +111,10 @@ const Cart = () => {
       )}
 
       {cart.length !== 0 && (
-        <div className="totalContainer-in-cart">
-          <span> Total {totalCart} €</span>
-          <button onClick={checkToken} className="valid-total-btn">
-            Valider mon panier
+        <div className="totalContainer">
+          <p className="totalPrice"> Total {totalCart} €</p>
+          <button onClick={checkToken} className="commande-btn">
+           Commander
           </button>
         </div>
       )}

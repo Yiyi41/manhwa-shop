@@ -17,6 +17,8 @@ const Login = () => {
         password: password,
       };
 
+      console.log("userToLogin ", userToLogin)
+
       try {
         const response = await axios.post(
           "http://localhost:4000/login",

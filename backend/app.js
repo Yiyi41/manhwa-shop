@@ -12,7 +12,9 @@ const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const paymentRoute = require("./routes/paymentRoute");
 
+app.use(express.json());  
 app.use(express.urlencoded({ extended: true }));
+
 
 const connectionOptions = {
   host: process.env.host,

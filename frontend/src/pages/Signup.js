@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "./Signup.css"
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,7 +12,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("firstName, name, email, password: ", firstName, name, email, password)
     try {
       if (firstName && name && email && password) {
         let userToAdd = {
@@ -20,10 +21,11 @@ const Signup = () => {
           email: email,
           password: password,
         };
-        const response = await axios.post(
-          "http://localhost:4000/signup",
-          userToAdd
-        );
+       
+
+        const response = await axios.post("http://localhost:4000/signup", userToAdd);
+
+        console.log("response.data ", response.data)
         // si signup reussi, le userToken sera envoyé au front, et ensuite stocké dans localstorage
         if (response.data.userToken) {
           localStorage.setItem("userToken", response.data.userToken);
@@ -38,7 +40,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup">
+    <div className="container">
       <h3>Créer votre compte et bénéficiez de nos avantages adhérents</h3>
       <form onSubmit={handleSubmit} className="signup-form">
         <input
@@ -71,7 +73,7 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" className="validation-creation-input">
+        <button type="submit" className="submitBtn">
           Créer un compte
         </button>
         <Link to="/login" className="login-redirect">
