@@ -1,0 +1,96 @@
+.header-container {
+    padding-top: 10px;
+    width: 90%;
+    margin: auto;
+    height: 80px;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+
+  
+  }
+
+  .logoContainer {
+    height: 100%;
+    /* border: 1px blue solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logoImg {
+    margin-top: -20px;
+    width: 120px;
+  }
+ 
+  .bars-icon {
+    height: 25px;
+    margin-left: 10px;
+    /* display: none; */
+    visibility: hidden;
+  }
+
+  .cart-icon {
+    height: 26px;
+  }
+
+  .user-icon {
+    height: 28px;
+  }
+
+  .check-user-icon {
+    height: 12px;
+    position: relative;
+    left: 35px;
+    bottom: 8px;
+  }
+
+
+  .cart-link-header {
+    color: #ff7a7a;
+  }
+
+  .block-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 200px;
+    justify-self: flex-end;
+
+
+  }
+
+  .iconsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nbInCart {
+    text-align: center;
+    position: absolute;
+    right: -10px;
+    bottom: 34px;
+    background-color: #f0a52a;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 0.8rem;
+    color: white;
+  }
+
+  .user-icon {
+    margin-right: 20px;
+    /* height: 100%; */
+  }
+
+  .logoutBtn {
+    cursor: pointer;
+    color: #ee817e;
+  }
+
+  .displayNone{
+  visibility: hidden;
+  }

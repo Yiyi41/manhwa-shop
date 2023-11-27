@@ -17,20 +17,24 @@ const userRoutes = (app, db) => {
       const name = req.body.name;
       const email = req.body.email;
       const password = newHash;
-      console.log("================================")
-      console.log("req.body: ", req.body)
+ 
 
-      console.log("firstname, name, email, password: ", firstname, name, email, password);
+      // console.log("firstname, name, email, password: ", firstname, name, email, password);
 
       const checkUser = await db.query("SELECT * FROM User WHERE email = ?", [
         email,
       ]);
 
+
+
       if (checkUser.length === 0) {
-        const responseDB = await db.query(
+        const insertToDB = await db.query(
           "INSERT INTO User (firstname,name,email,password,salt ) VALUES (?,?,?,?,?)",[firstname, name, email, password, newSalt]);
-        const userId = responseDB.insertId;
-        const userName = responseDB.firstname;
+        // console.log("responseDB ", responseDB)
+        const userId = insertToDB.insertId;
+        // const userName = responseDB.firstname;
+        // console.log("userName ", userName)
+        
         if (userId) {
           const token = jwt.sign({ id: userId }, process.env.jwtokenKey, {
             expiresIn: "2h",
@@ -39,7 +43,7 @@ const userRoutes = (app, db) => {
             status: 200,
             userToken: token,
             userId: userId,
-            userName: userName,
+            userName: req.body.firstname,
           });
         }
       } else {

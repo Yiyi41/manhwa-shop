@@ -41,18 +41,18 @@ const Signup = () => {
 
   return (
     <div className="container">
-      <h3>Créer votre compte et bénéficiez de nos avantages adhérents</h3>
+      <h3>Créez votre compte et bénéficiez de nos avantages adhérents</h3>
       <form onSubmit={handleSubmit} className="signup-form">
         <input
           type="text"
-          placeholder="prénom"
+          placeholder="Prénom"
           required
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
         <input
           type="text"
-          placeholder="nom"
+          placeholder="Nom"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -60,14 +60,14 @@ const Signup = () => {
 
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="mot de passe"
+          placeholder="Mot de passe"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
+import "./Login.css"
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,18 +45,18 @@ const Login = () => {
       <input
         required
         type="text"
-        placeholder="email"
+        placeholder="Email"
         className="text-input"
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         required
         type="password"
-        placeholder="mot de passe"
+        placeholder="Mot de passe"
         className="text-input"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" className="validation-input">
+      <button type="submit" className="connexionBtn">
         Connexion
       </button>
       <Link to="/signup" className="signup-redirect">

@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import logo from "../assets/logo-v1-manhwa.png";
+import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
 import panier from "../assets/ajouter-au-panier2.png";
 import profil from "../assets/profil (1).png";
 import menu from "../assets/hamburger.png";
 import check from "../assets/verifier.png";
+
+import "./Header.css"
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,15 +36,24 @@ const Header = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userName");
+    navigate("/");
+  };
+
+
+
   return (
     <div className="header-container">
       <img src={menu} alt="" className="bars-icon" />
-      <Link to="/" onClick={() => handleCategories("")}>
-        <img src={logo} alt="logo du site" className="logo" />
+      <Link to="/" onClick={() => handleCategories("")} className="logoContainer">
+        <img src={logo} alt="logo du site" className="logoImg" />
       </Link>
 
       <div className="block-right">
-        {userId && <img src={check} alt="" className="check-user-icon" />}
+        <div className="iconsContainer"> {userId && <img src={check} alt="" className="check-user-icon" />}
         <img
           src={profil}
           alt=""
@@ -52,8 +63,17 @@ const Header = () => {
         <Link to="/cart" className="cart-link-header">
           <img src={panier} alt="" className="cart-icon" />
         </Link>
-        {quantity > 0 && <span className="nbInCart">{quantity}</span>}
+        {quantity > 0 && <span className="nbInCart">{quantity}</span>}</div>
+       
+      <div className= "logoutContainer">
+      {userId ? (
+    <p className="logoutBtn" onClick={handleLogout}>
+      Déconnecter</p>):(<p className="logoutBtn" onClick={()=> navigate("/login")}>
+      Connecter
+    </p>)}
+</div>
       </div>
+     
     </div>
   );
 };

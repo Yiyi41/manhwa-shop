@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 const UserAccount = () => {
   const userId = localStorage.getItem("userId");
@@ -11,7 +11,7 @@ const UserAccount = () => {
   const [getUserOrders, setGetUserOrders] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const navigate = useNavigate();
+ 
 
   useEffect(() => {
     const getUserOrders = async () => {
@@ -20,7 +20,7 @@ const UserAccount = () => {
           `http://localhost:4000/payments/${userId}`
         );
 
-        console.log(response.data.responseDB);
+        console.log(response);
         setGetUserOrders(response.data.responseDB);
         setIsLoading(false);
       } catch (error) {
@@ -30,20 +30,10 @@ const UserAccount = () => {
     getUserOrders();
   }, [userId]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    navigate("/");
-  };
 
-  return isLoading ? (
-    <span>En cours de chargement...</span>
-  ) : (
+
+  return (
     <div className="account-container">
-      <p className="account-logout" onClick={handleLogout}>
-        Déconnecter
-      </p>
       <h2 className="title">BONJOUR {userName.toUpperCase()}</h2>
       <p className="account-subtitle-detail">
         Bienvenue dans votre compte. Vous êtes ici dans votre espace personnel.
@@ -56,18 +46,17 @@ const UserAccount = () => {
           <p className="account-payment-detail">Montant</p>
           <p className="account-payment-detail">Status</p>
         </div>
-        {getUserOrders.map((order) => {
+        {/* {getUserOrders.map((order) => {
           return (
             <div key={order.id} className="account-payment-line">
               <p className="account-payment-detail">
-                {/* {order.paymentDate.slice(0, 10)} */}
                 {order.paymentDate}
               </p>
               <p className="account-payment-detail">{order.amount} €</p>
               <p className="account-payment-detail">Livré</p>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
