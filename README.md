@@ -1,21 +1,32 @@
-# Manhwa shop 
+# Manhwa Shop
 
-Manhwa comes from Korea and is equivalent of Manga in Japan. But there is a major difference, it is only online reading. Many manga fans are often frustrated not having a paper edition. This online shop is for those fans who like paper reading and collection addiction. I create usecase to imagine better user experience and make design with figma. For this project, I implemented strip feature for payement. 
+## Overview
+Manhwa Shop is a personal project born out of a friend who is a fan of Manhwa and the desire to bring the joy of paper reading to fans worldwide. 
+Manhwa comes from Korea and is equivalent of Manga in Japan.  However, there's a significant difference—Manhwa is exclusively for online reading. This online shop caters to fans who appreciate the tactile experience of paper reading and have a passion for building their collection. The project includes user experience design, implemented using Figma, and features a unique strip payment system.
 
-## Techno
+## Project Details
 
-React for frontend, nodejs for back, sql and sequilize for database
+- **Design:** User experience and design were crafted with Figma to ensure an engaging and intuitive interface.
 
-## Available Scripts
+- **Payment System:** Implemented a strip payment dev feature to enhance the shopping experience for users.
 
-In the project directory, you can run:
+## Technology Stack
+
+- **Frontend:** React
+- **Backend:** Node.js, express
+- **Database:** SQL, Sequelize
+
+## How to Run
+
+1. Clone the repository.
+2. Run `npm install` to install dependencies in backend and in frontend repo
+3. Execute `npm start` to start the development server.
 
 ### `npm start`
+Runs the backend with npm start and then runs the frontend repo in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload when you make changes, and lint errors will be displayed in the console.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Acknowledgements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Manhwa Shop is a personal project born out of a friend who is a fan of Manhwa and the desire to bring the joy of paper reading to fans worldwide. Please feel free to leave feedback. 
 
 
