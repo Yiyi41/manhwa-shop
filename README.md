@@ -2,7 +2,7 @@
 
 ## Overview
 Manhwa Shop is a personal project born out of a friend who is a fan of Manhwa and the desire to bring the joy of paper reading to fans worldwide. 
-Manhwa comes from Korea and is equivalent of Manga in Japan.  However, there's a significant difference—Manhwa is exclusively for online reading. This online shop caters to fans who appreciate the tactile experience of paper reading and have a passion for building their collection. The project includes user experience design, implemented using Figma, and features a unique strip payment system.
+Manhwa comes from Korea and is equivalent of Manga in Japan.  However, there's a significant difference—Manhwa is exclusively for online reading. This online shop caters to fans who appreciate the tactile experience of paper reading and have a passion for building their collection. The project includes user experience design, implemented using Figma, and features a unique stripe payment system.
 
 ## Project Details
 
