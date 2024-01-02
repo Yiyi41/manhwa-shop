@@ -92,6 +92,8 @@ const userRoutes = (app, db) => {
     }
   });
 
+
+  /* user historic purchases */
   app.get("/payments/:userid", async (req, res) => {
     const userId = req.params.userid;
     console.log("userId", userId);
@@ -99,7 +101,7 @@ const userRoutes = (app, db) => {
       "SELECT * FROM payments WHERE userId = ?",
       [userId]
     );
-    console.log(responseDB);
+    console.log("historiques de payments",responseDB);
     // res.json({ status: 200, responseDB });
     if (responseDB.length !== 0) {
       res.json({ status: 200, responseDB });

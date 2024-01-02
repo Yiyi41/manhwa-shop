@@ -2,8 +2,10 @@ import { useContext } from "react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
-import panier from "../assets/ajouter-au-panier2.png";
-import profil from "../assets/profil (1).png";
+// import panier from "../assets/ajouter-au-panier2.png";
+import panier from "../assets/sac-de-courses.png"
+
+import profil from "../assets/profil.png";
 import menu from "../assets/hamburger.png";
 import check from "../assets/verifier.png";
 
@@ -14,8 +16,7 @@ const Header = () => {
 
   const { setCategorieFiltree } = useContext(CartContext);
   const { cart } = useContext(CartContext);
-  // attention!!! il faut utiliser {} pour useContext, pas [].
-  // Sinon on a l'erreur "not iterable"
+
 
   let quantity = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -24,7 +25,7 @@ const Header = () => {
 
   const handleCategories = (categorie) => {
     setCategorieFiltree(categorie);
-    // console.log(categorieFiltree);
+
   };
 
   const userId = localStorage.getItem("userId");
@@ -61,9 +62,10 @@ const Header = () => {
           onClick={handleClickAccount}
         />
         <Link to="/cart" className="cart-link-header">
-          <img src={panier} alt="" className="cart-icon" />
+          <img src={panier} alt="" className="cart-icon" />  
+          {quantity > 0 && <span className="nbInCart">{quantity}</span>}
         </Link>
-        {quantity > 0 && <span className="nbInCart">{quantity}</span>}</div>
+      </div>
        
       <div className= "logoutContainer">
       {userId ? (

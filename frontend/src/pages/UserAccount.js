@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import "./UserAccount.css"
+
 
 const UserAccount = () => {
   const userId = localStorage.getItem("userId");
-  console.log(userId);
+  console.log("userId in localStorage", userId);
 
   const userName = localStorage.getItem("userName");
-  console.log(userName);
+  console.log("userName in localStorage", userName);
   const [getUserOrders, setGetUserOrders] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +22,7 @@ const UserAccount = () => {
           `http://localhost:4000/payments/${userId}`
         );
 
-        console.log(response);
+        console.log("list des payment par userId", response.data.responseDB);
         setGetUserOrders(response.data.responseDB);
         setIsLoading(false);
       } catch (error) {
@@ -46,7 +48,7 @@ const UserAccount = () => {
           <p className="account-payment-detail">Montant</p>
           <p className="account-payment-detail">Status</p>
         </div>
-        {/* {getUserOrders.map((order) => {
+        { !isLoading && getUserOrders.map((order) => {
           return (
             <div key={order.id} className="account-payment-line">
               <p className="account-payment-detail">
@@ -56,7 +58,7 @@ const UserAccount = () => {
               <p className="account-payment-detail">Livré</p>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );

@@ -2,9 +2,13 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { CartContext } from "../context/cartContext";
 
+import "./ValideCart.css"
+
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
+
+
 
 const stripePromise = loadStripe(
   "pk_test_51KTT8wFRyAqwsrmB12M5SkPpX3oG2Nz92V8ofrOCIQkNPLrHrSieUoY5uW0gkv2w47Ya2hSRNceR8WbauCcYxO6y00sXad8t2r"

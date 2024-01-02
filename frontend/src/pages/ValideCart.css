@@ -1,0 +1,27 @@
+ /* page payement */
+ .checkout-container {
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #faf8f8;
+    text-align: center;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 200px;
+    width: 95%;
+    padding: 10px;
+    margin: auto;
+    justify-content: space-evenly;
+  }
+
+ 
+
+  .pay-btn {
+    margin-top: 25px;
+    height: 30px;
+    width: 68px;
+    border: 1px solid lightslategray;
+    border-radius: 3px;
+    font-size: 1rem;
+  }

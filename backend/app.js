@@ -40,5 +40,5 @@ connection.then(async (db) => {
   paymentRoute(app, db);
 });
 
-// export { app, connection }; es6
+// export { app, connection }; si es6
 module.exports = { app, connection }; // es5

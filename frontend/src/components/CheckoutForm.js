@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/cartContext";
 
+import "./CheckoutForm.css"
+
 const CheckoutForm = ({ totalChecked, userId }) => {
   // console.log(totalChecked);
   // console.log(userId);

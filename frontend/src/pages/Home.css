@@ -1,13 +1,12 @@
-/* manhwa list container */
+
 .manhwaList-container {
-  /* border: 1px solid red; */
-  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   width: 85%;
   height: 100%;
   margin: auto;
   justify-content: center;
+  gap: 15px;
 }
 
 .manhwa-card {
@@ -24,11 +23,11 @@
 
 .manhwa-card:hover {
  
-  height: 420px;
-  width: 270px;
+  height: 410px;
+  width: 255px;
   box-shadow: 3px 0px 5px 0px #777;
   border-radius: 15px 5px;
-  transition: height width border-radius box-shadow 350ms ease-in-out;
+  transition: height width box-shadow border-radius  350ms ease-in-out;
 }
 
 .link-to-detail {

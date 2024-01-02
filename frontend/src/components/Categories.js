@@ -1,5 +1,6 @@
 import { useState } from "react";
 // import Button from "@mui/material/Button";
+import "./Categories.css"
 
 const Categories = (props) => {
   // on stock les catégories dans un state
@@ -17,9 +18,8 @@ const Categories = (props) => {
     <div className="categories">
       {categories.map((categorie) => {
         return (
-          <div>
+          <div key={categorie}>
             <button
-              key={categorie}
               name={categorie}
               onClick={() => props.handleCategories(categorie)}
             >

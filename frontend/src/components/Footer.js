@@ -3,6 +3,7 @@ import youtube from "../assets/youtube.png";
 import facebook from "../assets/facebook.png";
 import twitter from "../assets/twitter.png";
 import instagram from "../assets/instagram.png";
+import "./Footer.css"
 
 const Footer = () => {
   return (

@@ -60,12 +60,11 @@ const Home = () => {
     setCart(newCart);
   };
 
-  //
+
   const handleCategories = (categorie) => {
     setCategorieFiltree(categorie);
   };
-  //
-  //
+
   return isLoading ? (
     <span className="loading-message">En cours de chargement...</span>
   ) : (
@@ -110,10 +109,10 @@ const Home = () => {
                       <img
                         src={manhwa.img}
                         alt="manhwa"
-                        className="manhwa-img"
+                        className="manhwaImg"
                       />
                     </Link>
-                    <div className="cardInfos">
+                    <div className="manhwaInfos">
                       <span className="manhwa-title">{manhwa.name}</span>
                       <span className="manhwa-author">{manhwa.author}</span>
 

@@ -1,0 +1,24 @@
+
+  .footer {
+    padding: 30px;
+    color: #bdbbbb;
+    text-align: center;
+    margin-top: 90px;
+    position: static;
+    border-top: 2px solid #f6f2f2;
+  }
+  .socialNetworks {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .footer img {
+    width: 30px;
+  }
+
+  .contact {
+    margin-top: 15px;
+  }
+

@@ -1,0 +1,28 @@
+  /* component category */
+  
+  .categories button {
+    background-color: white;
+    border:none;
+    color: #777;
+    font-size: 1em;
+    letter-spacing: 1px;
+    padding: 10px; 
+  }
+
+  .categories button:hover {
+    background-color: #ee817e;
+    color: whitesmoke;
+    border-radius: 20px; 
+  }
+
+  .categories {
+    width: 90%;
+    margin: auto;
+    padding: 45px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+
+
+  
