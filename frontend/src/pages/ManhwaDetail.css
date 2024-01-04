@@ -1,27 +1,35 @@
+.content-container {
+  width: 1400px;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 45px;
+}
+
 .cardInfos-author {
-    font-size: 1rem;
-    margin-top: 5px;
-  }
-  
-  .cardInfos-title {
-    color: #323131;
-    margin-top: 5px;
-  }
-  
-  .cardInfos-price {
-    font-size: 1.2rem;
-    color: #323131;
-  }
-  
-  .manhwa-img-in-manhwaDetail {
-    width: 30%;
-  }
-  
-  .ajoutPanier-btn {
-    width: 25%;
-    cursor: pointer;
-  }
-  
-  details {
-    width: 60%;
-  }
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.cardInfos-title {
+  color: #323131;
+  margin-top: 5px;
+}
+
+.cardInfos-price {
+  font-size: 1.2rem;
+  color: #323131;
+}
+
+.manhwa-img-in-manhwaDetail {
+  width: 30%;
+}
+
+details {
+  width: 60%;
+  text-align: center;
+}

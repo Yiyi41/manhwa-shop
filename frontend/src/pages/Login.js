@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
-import "./Login.css"
+import "./Login.css";
+import Button from "../components/Button/Button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,10 +17,10 @@ const Login = () => {
     if (email && password) {
       let userToLogin = {
         email: email,
-        password: password,
+        password: password
       };
 
-      console.log("userToLogin ", userToLogin)
+      console.log("userToLogin ", userToLogin);
 
       try {
         const response = await axios.post(
@@ -56,9 +57,8 @@ const Login = () => {
         className="text-input"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" className="connexionBtn">
-        Connexion
-      </button>
+
+      <Button type="submit" text="Connexion" />
       <Link to="/signup" className="signup-redirect">
         <p>Créer un compte</p>
       </Link>

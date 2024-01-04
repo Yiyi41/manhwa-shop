@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/cartContext";
 import { useNavigate, Link } from "react-router-dom";
-// import axios from "axios";
 import poubelle from "../assets/poubelle.png";
 
-import "./Cart.css"
+import "./Cart.css";
+
+import Button from "../components/Button/Button";
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -59,7 +60,7 @@ const Cart = () => {
                 <img
                   src={itemList["info"]["img"]}
                   alt="manhwa"
-                 className="produitImg"
+                  className="produitImg"
                 />
               </Link>
 
@@ -113,9 +114,7 @@ const Cart = () => {
       {cart.length !== 0 && (
         <div className="totalContainer">
           <p className="totalPrice"> Total {totalCart} €</p>
-          <button onClick={checkToken} className="commande-btn">
-           Commander
-          </button>
+          <Button type="button" onClick={checkToken} text="Commander" />
         </div>
       )}
     </div>

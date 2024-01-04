@@ -7,7 +7,6 @@ import "./CheckoutForm.css";
 
 const CheckoutForm = ({ totalChecked, userId }) => {
   const { cart, setCart } = useContext(CartContext);
-
   const stripe = useStripe();
   const elements = useElements();
   const [completed, setCompleted] = useState(false);
@@ -15,10 +14,8 @@ const CheckoutForm = ({ totalChecked, userId }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-
       // récupèrer les données cb
       const cardInfos = elements.getElement(CardElement);
-
       // Envoie ces données à l'API Stripe: vlaidation de la carte + réception d'un token
       const stripeResponse = await stripe.createToken(cardInfos, {
         name: userId // envoyer l'id du user

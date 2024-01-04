@@ -3,7 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
 
-import "./ManhwaDetail.css"
+import "./ManhwaDetail.css";
+
+import Button from "../components/Button/Button";
 
 const ManhwaDetail = () => {
   const [manhwaDetail, setManhwaDetail] = useState();
@@ -25,7 +27,6 @@ const ManhwaDetail = () => {
     fetchManhwaDetail();
   }, [id]);
 
-
   const handleAddToCart = (manhwa) => {
     const newCart = [...cart];
     let isIn = false;
@@ -40,7 +41,7 @@ const ManhwaDetail = () => {
     if (isIn === false) {
       newCart.push({
         info: manhwa,
-        quantity: 1,
+        quantity: 1
       });
     }
 
@@ -50,7 +51,7 @@ const ManhwaDetail = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <div key={manhwaDetail.id} className="manhwaDetails">
+    <div key={manhwaDetail.id} className="content-container">
       <p className="manhwaTitle-in-manhwaDetail">{manhwaDetail.name}</p>
       <p className="cardInfos-author">Auteur: {manhwaDetail.author}</p>
       <img
@@ -67,14 +68,13 @@ const ManhwaDetail = () => {
         {manhwaDetail.resume}
       </details>
       <p className="cardInfos-price">{manhwaDetail.price}, 00 €</p>
-      <button
-        className="ajoutPanier-btn"
+      <Button
+        type="button"
         onClick={() => {
           handleAddToCart(manhwaDetail);
         }}
-      >
-        Ajouter au panier
-      </button>
+        text="Ajouter au panier"
+      />
     </div>
   );
 };

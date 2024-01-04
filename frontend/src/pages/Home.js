@@ -60,7 +60,6 @@ const Home = () => {
     setCart(newCart);
   };
 
-
   const handleCategories = (categorie) => {
     setCategorieFiltree(categorie);
   };
@@ -68,7 +67,7 @@ const Home = () => {
   return isLoading ? (
     <span className="loading-message">En cours de chargement...</span>
   ) : (
-    <div>
+    <div className="content-container">
       {/* <SearchBar   /> */}
       <Categories handleCategories={handleCategories} />
       <div className="manhwaList-container">
