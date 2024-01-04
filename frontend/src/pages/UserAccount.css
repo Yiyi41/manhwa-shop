@@ -1,37 +1,42 @@
- /* page account */
- .account-container {
-    text-align: center;
-    width: 90%;
-    margin: auto;
-    /* margin-top: 30px; */
-  }
+/* page account */
+.account-container {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+}
 
-  
+.account-payment-line {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 3fr;
+  gap: 0px 0px;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+}
 
-  .account-payment-line {
-    /* width: 80%; */
-    display: flex;
-    gap: 20px;
-    margin: auto;
-  }
+.account-payment-detail {
+  color: #777;
+  margin: auto;
+  padding: 10px;
+  width: 100%;
+}
 
-  .account-payment-detail {
-    color: #777;
-    margin: auto;
-    padding: 10px;
-  }
+h3 {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
 
-  h3 {
-    margin-bottom: 30px;
-    margin-top: 30px;
-  }
+.title,
+h3 {
+  color: #111;
+  text-align: center;
+}
 
-  .title,
-  h3 {
-    color: #111;
-    text-align: center;
-  }
+.account-subtitle-detail {
+  margin-top: 20px;
+  color: #777;
+}
 
-  .account-subtitle-detail {
-    color: #777;
-  }
+table {
+  width: 90%;
+  margin: 0 auto;
+}

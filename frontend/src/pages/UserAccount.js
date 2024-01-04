@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import "./UserAccount.css"
-
+import "./UserAccount.css";
 
 const UserAccount = () => {
   const userId = localStorage.getItem("userId");
-  console.log("userId in localStorage", userId);
 
   const userName = localStorage.getItem("userName");
-  console.log("userName in localStorage", userName);
+
   const [getUserOrders, setGetUserOrders] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
- 
 
   useEffect(() => {
     const getUserOrders = async () => {
@@ -32,34 +28,60 @@ const UserAccount = () => {
     getUserOrders();
   }, [userId]);
 
-
-
   return (
     <div className="account-container">
       <h2 className="title">BONJOUR {userName.toUpperCase()}</h2>
       <p className="account-subtitle-detail">
-        Bienvenue dans votre compte. Vous êtes ici dans votre espace personnel.
-        Vous trouverez ici le suivi et le détail de vos commandes.
+        Bienvenue sur votre espace personnel. Vous trouverez ici le suivi et le
+        détail de vos commandes.
       </p>
       <h3>Historiques de mes commandes</h3>
-      <div>
+      <table>
+        <tbody>
+          <tr className="account-payment-line">
+            <th className="account-payment-detail">Date</th>
+            <th className="account-payment-detail">Montant</th>
+            <th className="account-payment-detail">Status</th>
+            <th className="account-payment-detail">Numéro de commande</th>
+          </tr>
+
+          {!isLoading &&
+            getUserOrders.map((order) => {
+              return (
+                <tr key={order.id} className="account-payment-line">
+                  <td className="account-payment-detail">
+                    {new Date(order.paymentDate).toLocaleDateString()}
+                  </td>
+                  <td className="account-payment-detail">{order.amount} €</td>
+                  <td className="account-payment-detail">Livré</td>
+                  <td className="account-payment-detail">
+                    {order.orderNumberStripe}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+
+      {/* <div>
         <div className="account-payment-line">
           <p className="account-payment-detail">Date</p>
           <p className="account-payment-detail">Montant</p>
           <p className="account-payment-detail">Status</p>
         </div>
-        { !isLoading && getUserOrders.map((order) => {
-          return (
-            <div key={order.id} className="account-payment-line">
-              <p className="account-payment-detail">
-                {order.paymentDate}
-              </p>
-              <p className="account-payment-detail">{order.amount} €</p>
-              <p className="account-payment-detail">Livré</p>
-            </div>
-          );
-        })}
-      </div>
+        {!isLoading &&
+          getUserOrders.map((order) => {
+            return (
+              <div key={order.id} className="account-payment-line">
+                <p className="account-payment-detail">
+                  {new Date(order.paymentDate).toLocaleDateString()}
+                </p>
+                <p className="account-payment-detail">{order.amount} €</p>
+                <p className="account-payment-detail">Livré</p>
+              </div>
+            );
+          })}
+      </div> */}
     </div>
   );
 };

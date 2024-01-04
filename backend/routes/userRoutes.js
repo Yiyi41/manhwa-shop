@@ -8,8 +8,6 @@ const jwt = require("jsonwebtoken");
 const userRoutes = (app, db) => {
   /* user signup */
   app.post("/signup", async (req, res) => {
-
-
     try {
       const newSalt = uid2(16);
       const newHash = SHA256(req.body.password + newSalt).toString(encBase64);
@@ -17,33 +15,28 @@ const userRoutes = (app, db) => {
       const name = req.body.name;
       const email = req.body.email;
       const password = newHash;
- 
-
-      // console.log("firstname, name, email, password: ", firstname, name, email, password);
 
       const checkUser = await db.query("SELECT * FROM User WHERE email = ?", [
-        email,
+        email
       ]);
-
-
 
       if (checkUser.length === 0) {
         const insertToDB = await db.query(
-          "INSERT INTO User (firstname,name,email,password,salt ) VALUES (?,?,?,?,?)",[firstname, name, email, password, newSalt]);
-        // console.log("responseDB ", responseDB)
+          "INSERT INTO User (firstname,name,email,password,salt ) VALUES (?,?,?,?,?)",
+          [firstname, name, email, password, newSalt]
+        );
+
         const userId = insertToDB.insertId;
-        // const userName = responseDB.firstname;
-        // console.log("userName ", userName)
-        
+
         if (userId) {
           const token = jwt.sign({ id: userId }, process.env.jwtokenKey, {
-            expiresIn: "2h",
+            expiresIn: "2h"
           });
           res.json({
             status: 200,
             userToken: token,
             userId: userId,
-            userName: req.body.firstname,
+            userName: req.body.firstname
           });
         }
       } else {
@@ -59,9 +52,9 @@ const userRoutes = (app, db) => {
     try {
       const email = req.body.email;
       const userToFind = await db.query("SELECT * FROM User WHERE email = ?", [
-        email,
+        email
       ]);
-      // console.log(userToFind.length);
+
       if (userToFind !== 0) {
         const newHash = SHA256(req.body.password + userToFind[0].salt).toString(
           encBase64
@@ -72,14 +65,14 @@ const userRoutes = (app, db) => {
             { id: userToFind[0].id },
             process.env.jwtokenKey,
             {
-              expiresIn: "2h",
+              expiresIn: "2h"
             }
           );
           res.json({
             status: 200,
             userToken: token,
             userId: userToFind[0].id,
-            userName: userToFind[0].firstname,
+            userName: userToFind[0].firstname
           });
         } else {
           res.json({ status: 400, message: "connexion non autorisée" });
@@ -89,24 +82,6 @@ const userRoutes = (app, db) => {
       }
     } catch (error) {
       console.log(error);
-    }
-  });
-
-
-  /* user historic purchases */
-  app.get("/payments/:userid", async (req, res) => {
-    const userId = req.params.userid;
-    console.log("userId", userId);
-    const responseDB = await db.query(
-      "SELECT * FROM payments WHERE userId = ?",
-      [userId]
-    );
-    console.log("historiques de payments",responseDB);
-    // res.json({ status: 200, responseDB });
-    if (responseDB.length !== 0) {
-      res.json({ status: 200, responseDB });
-    } else {
-      res.status(404);
     }
   });
 };

@@ -3,11 +3,9 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/cartContext";
 
-import "./CheckoutForm.css"
+import "./CheckoutForm.css";
 
 const CheckoutForm = ({ totalChecked, userId }) => {
-  // console.log(totalChecked);
-  // console.log(userId);
   const { cart, setCart } = useContext(CartContext);
 
   const stripe = useStripe();
@@ -17,24 +15,13 @@ const CheckoutForm = ({ totalChecked, userId }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      // avoir la date du jour
-      let todayDate = new Date();
-      console.log("todayDate", todayDate);
-      let payementDate =
-        todayDate.getFullYear() +
-        "-" +
-        (todayDate.getMonth() + 1) +
-        "-" +
-        todayDate.getDate();
-
-      console.log("payementDate", payementDate);
 
       // récupèrer les données cb
       const cardInfos = elements.getElement(CardElement);
 
       // Envoie ces données à l'API Stripe: vlaidation de la carte + réception d'un token
       const stripeResponse = await stripe.createToken(cardInfos, {
-        name: userId, // envoyer l'id du user
+        name: userId // envoyer l'id du user
       });
 
       const stripToken = stripeResponse.token.id;
@@ -43,10 +30,9 @@ const CheckoutForm = ({ totalChecked, userId }) => {
         total: totalChecked,
         userId: userId,
         cart: cart,
-        source: stripToken,
-        paymentDate: payementDate,
+        source: stripToken
       });
-      // console.log(response.data.status); // Succeeded
+
       if (response.data.status === 200) {
         setCompleted(true);
         setCart([]);

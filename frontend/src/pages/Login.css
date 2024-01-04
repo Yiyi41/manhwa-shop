@@ -1,8 +1,8 @@
-/* login */
+
 .title {
     font-size: 1.5rem;
     font-weight: bold;
-    /* margin-bottom: 20px; */
+
   }
 
   .login-form{
@@ -24,7 +24,6 @@
     width: 50%;
     height: 45px;
     border-radius: 5px 3px;
-    /* margin: 15px 5%; */
     background-color: #f3f3f3;
     border: none;
     padding: 10px;
@@ -52,9 +51,9 @@
 
   .connexionBtn {
     width: fit-content;
+    padding: 10px;
     font-size: 1rem;
     height: 40px;
-    background-color: #ff7a7a;
     color: black;
     border: none;
     border-radius: 5px 3px;
