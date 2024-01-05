@@ -14,15 +14,6 @@ import ValidCart from "./pages/ValidCart";
 import UserAccount from "./pages/UserAccount";
 
 function App() {
-  //   On stock la catégorie filtrée dans un state pour l'appliquer..
-  // const [categorieFiltreeApp, setCategorieFiltreeApp] = useState("");
-
-  // const handleCategories = () => {
-  //   setCategorieFiltreeApp("");
-
-  //   console.log(categorieFiltreeApp);
-  // };
-  
   return (
     <div className="app">
       <Header />
