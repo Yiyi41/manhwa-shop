@@ -1,10 +1,9 @@
-export const getAllManhwas = async () => {
+export const getAllManhwas = async (db, res) => {
   const responseDB = await db.query("SELECT * FROM Manhwa");
   res.json({ status: 200, responseDB });
 };
 
-export const getManhwasById = async () => {
-  const manhwaId = req.params.id;
+export const getManhwasById = async (db, res, manhwaId) => {
   const responseDB = await db.query("SELECT * FROM Manhwa WHERE id = ?", [
     manhwaId
   ]);

@@ -19,5 +19,6 @@
     "promise-mysql": "^5.2.0",
     "stripe": "^11.8.0",
     "uid2": "^1.0.0"
-  }
+  },
+  "type": "module"
 }

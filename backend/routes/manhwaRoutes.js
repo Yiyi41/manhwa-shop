@@ -1,15 +1,16 @@
-import { getAllManhwas, getManhwasById } from "../controllers/manhwa";
+import { getAllManhwas, getManhwasById } from "../controllers/manhwa.js";
 
 const manhwaRoutes = (app, db) => {
   /* get all manhwas*/
   app.get("/manhwas", async (req, res) => {
-    getAllManhwas;
+    await getAllManhwas(db, res);
   });
 
   /* get manhwa by id*/
   app.get("/manhwas/:id", async (req, res) => {
-    getManhwasById;
+    const manhwaId = req.params.id;
+    await getManhwasById(db, res, manhwaId);
   });
 };
 
-module.exports = manhwaRoutes;
+export default manhwaRoutes;
