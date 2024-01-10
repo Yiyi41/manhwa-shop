@@ -54,7 +54,7 @@ export const loginFunc = async (db, res) => {
       const newHash = SHA256(req.body.password + userToFind[0].salt).toString(
         encBase64
       );
-      console.log(userToFind[0].firstname);
+
       if (newHash === userToFind[0].password) {
         const token = jwt.sign(
           { id: userToFind[0].id },
