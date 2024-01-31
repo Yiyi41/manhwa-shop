@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import pkg from "crypto-js";
 const { SHA256, encBase64 } = pkg;
 
-export const signupFunc = async (db, res) => {
+export const signupFunc = async (db, req, res) => {
   try {
     const newSalt = uid2(16);
     const newHash = SHA256(req.body.password + newSalt).toString(encBase64);
@@ -43,7 +43,7 @@ export const signupFunc = async (db, res) => {
   }
 };
 
-export const loginFunc = async (db, res) => {
+export const loginFunc = async (db, req, res) => {
   try {
     const email = req.body.email;
     const userToFind = await db.query("SELECT * FROM User WHERE email = ?", [
