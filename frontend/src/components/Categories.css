@@ -18,7 +18,6 @@
 .categories {
   width: 100%;
   margin: auto;
-  padding: 45px;
   display: flex;
   justify-content: space-around;
 }
