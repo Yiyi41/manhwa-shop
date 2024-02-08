@@ -1,13 +1,3 @@
-// const { connection } = require("./app");
-// const express = require("express");
-// const cors = require("cors");
-
-// // import routes
-// const manhwaRoutes = require("./routes/manhwaRoutes");
-// const userRoutes = require("./routes/userRoutes");
-// const cartRoutes = require("./routes/cartRoutes");
-// const paymentRoute = require("./routes/paymentRoute");
-
 import { connection } from "./dbConfig.js";
 import express from "express";
 import cors from "cors";
@@ -27,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 connection.then(async (db) => {
   app.get("/", (req, res) => {
     try {
-      res.json({ status: 200, msg: "C'est good" });
+      res.json({ status: 200, msg: "Connected" });
     } catch (error) {
       res.send(error);
     }

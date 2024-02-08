@@ -7,12 +7,13 @@ import "./Home.css";
 import { CartContext } from "../context/cartContext";
 import Categories from "../components/Categories";
 import panier from "../assets/ajouter-au-panier2.png";
+import Loader from "../components/loader/Loader";
+import Modal from "../components/Modal/Modal";
 
 const Home = () => {
   const [manhwaList, setManhwaList] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  // attention!!! il faut utiliser {} pour useContext, pas []
-  // Sinon on a l'erreur "not iterable"
+  const [modalOpen, setModalOpen] = useState(false);
   const { cart, setCart } = useContext(CartContext); //le state cart est dans un useContext pour etre accessible de partout (dans le header, dans la page panier...)
   //
 
@@ -58,6 +59,7 @@ const Home = () => {
       });
     }
     setCart(newCart);
+    setModalOpen(true);
   };
 
   const handleCategories = (categorie) => {
@@ -65,73 +67,86 @@ const Home = () => {
   };
 
   return isLoading ? (
-    <span className="loading-message">En cours de chargement...</span>
+    <Loader />
   ) : (
-    <div className="content-container">
-      {/* <SearchBar   /> */}
-      <Categories handleCategories={handleCategories} />
-      <div className="manhwaList-container">
-        {categorieFiltree === ""
-          ? manhwaList.map((manhwa) => {
-              return (
-                <div key={manhwa.id} className="manhwa-card">
-                  <Link to={`/detail/${manhwa.id}`} className="link-to-detail">
-                    <img src={manhwa.img} alt="manhwa" className="manhwaImg" />
-                  </Link>
-                  <div className="manhwaInfos">
-                    <span className="manhwa-title">{manhwa.name}</span>
-                    <span className="manhwa-author">{manhwa.author}</span>
-                    <div className="priceContainer">
-                      <p className="manhwa-price">{manhwa.price}, 00 €</p>
-                      <img
-                        src={panier}
-                        alt=""
-                        className="ajoutPanier-icon"
-                        onClick={() => {
-                          handleAddToCart(manhwa);
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          : // eslint-disable-next-line array-callback-return
-            manhwaList.map((manhwa) => {
-              if (manhwa.genre === categorieFiltree)
+    <>
+      {" "}
+      <div className="content-container">
+        {/* <SearchBar   /> */}
+        <Categories handleCategories={handleCategories} />
+        <div className="manhwaList-container">
+          {categorieFiltree === ""
+            ? manhwaList.map((manhwa) => {
                 return (
-                  <div key={manhwa.id} className="manhwa-card">
-                    <Link
-                      to={`/detail/${manhwa.id}`}
-                      className="link-to-detail"
-                    >
-                      <img
-                        src={manhwa.img}
-                        alt="manhwa"
-                        className="manhwaImg"
-                      />
-                    </Link>
-                    <div className="manhwaInfos">
-                      <span className="manhwa-title">{manhwa.name}</span>
-                      <span className="manhwa-author">{manhwa.author}</span>
-
-                      <div className="priceContainer">
-                        <p className="manhwa-price">{manhwa.price}, 00 €</p>
+                  <div className="manhwa-card-container">
+                    <div key={manhwa.id} className="manhwa-card">
+                      <Link
+                        to={`/detail/${manhwa.id}`}
+                        className="link-to-detail"
+                      >
                         <img
-                          src={panier}
-                          alt=""
-                          className="ajoutPanier-icon"
-                          onClick={() => {
-                            handleAddToCart(manhwa);
-                          }}
+                          src={manhwa.img}
+                          alt="manhwa"
+                          className="manhwaImg"
                         />
+                      </Link>
+                      <div className="manhwaInfos">
+                        <span className="manhwa-title">{manhwa.name}</span>
+                        <span className="manhwa-author">{manhwa.author}</span>
+                        <div className="priceContainer">
+                          <p className="manhwa-price">{manhwa.price}, 00 €</p>
+                          <img
+                            src={panier}
+                            alt=""
+                            className="ajoutPanier-icon"
+                            onClick={() => {
+                              handleAddToCart(manhwa);
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 );
-            })}
+              })
+            : // eslint-disable-next-line array-callback-return
+              manhwaList.map((manhwa) => {
+                if (manhwa.genre === categorieFiltree)
+                  return (
+                    <div key={manhwa.id} className="manhwa-card">
+                      <Link
+                        to={`/detail/${manhwa.id}`}
+                        className="link-to-detail"
+                      >
+                        <img
+                          src={manhwa.img}
+                          alt="manhwa"
+                          className="manhwaImg"
+                        />
+                      </Link>
+                      <div className="manhwaInfos">
+                        <span className="manhwa-title">{manhwa.name}</span>
+                        <span className="manhwa-author">{manhwa.author}</span>
+
+                        <div className="priceContainer">
+                          <p className="manhwa-price">{manhwa.price}, 00 €</p>
+                          <img
+                            src={panier}
+                            alt=""
+                            className="ajoutPanier-icon"
+                            onClick={() => {
+                              handleAddToCart(manhwa);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+              })}
+        </div>
       </div>
-    </div>
+      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+    </>
   );
 };
 

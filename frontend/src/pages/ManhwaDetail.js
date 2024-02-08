@@ -53,21 +53,22 @@ const ManhwaDetail = () => {
   ) : (
     <div key={manhwaDetail.id} className="content-container">
       <p className="manhwaTitle-in-manhwaDetail">{manhwaDetail.name}</p>
-      <p className="cardInfos-author">Auteur: {manhwaDetail.author}</p>
+      <p className="author">Auteur: {manhwaDetail.author}</p>
       <img
         src={manhwaDetail.img}
         alt="manhwa"
         className="manhwa-img-in-manhwaDetail"
       />
 
-      <p className="cardInfos-author">
-        Artist: {manhwaDetail.artist ? manhwaDetail.artist : "non communiqué"}
+      <p className="author">
+        Dessinateur:
+        {manhwaDetail.artist ? manhwaDetail.artist : " non communiqué"}
       </p>
       <details>
         <summary>Voir le synopsis</summary>
         {manhwaDetail.resume}
       </details>
-      <p className="cardInfos-price">{manhwaDetail.price}, 00 €</p>
+      <p className="price">{manhwaDetail.price}, 00 €</p>
       <Button
         type="button"
         onClick={() => {

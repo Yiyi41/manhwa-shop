@@ -46,8 +46,6 @@ export const validPayment = async (db, req, res) => {
       );
     });
 
-    const commitResult = await db.query("COMMIT");
-
     res.json({ status: 200 });
   }
 };

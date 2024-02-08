@@ -15,10 +15,14 @@
   padding-bottom: 50px;
 }
 
-.manhwa-card {
-  /* border: 1px palevioletred solid; */
+.manhwa-card-container {
   height: 400px;
-  width: 250px;
+  width: 260px;
+}
+
+.manhwa-card {
+  height: 90%;
+  width: 90%;
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-rows: 3fr 1fr;
@@ -28,8 +32,8 @@
 }
 
 .manhwa-card:hover {
-  height: 410px;
-  width: 255px;
+  height: 100%;
+  width: 100%;
   box-shadow: 3px 0px 5px 0px #777;
   border-radius: 15px 5px;
   transition: height width box-shadow border-radius 350ms ease-in-out;
