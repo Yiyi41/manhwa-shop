@@ -40,7 +40,7 @@
   width: 100%;
   box-shadow: 3px 0px 5px 0px #777;
   border-radius: 15px 5px;
-  /* transition: height width box-shadow border-radius 350ms ease-in-out; */
+  transition: box-shadow, height, width, border-radius, 350ms ease-in-out;
 }
 
 .link-to-detail {
